@@ -3,38 +3,51 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { emitter } from '../../utils/emitter';
+import _ from 'lodash';
 
-class ModalUser extends Component {
+class ModalEditUser extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            id: '',
             email: '',
             password: '',
             firstName: '',
             lastName: '',
             address: '',
         }
-        this.listenToEmitter();
+        // this.listenToEmitter();
     }
 
-    listenToEmitter() {
-        emitter.on('EVENT_CLEAR_MODAL_DATA', () => {
-            this.setState({
-                email: '',
-                password: '',
-                firstName: '',
-                lastName: '',
-                address: '',
-            })
-        })
-    }
+    // listenToEmitter() {
+    //     emitter.on('EVENT_CLEAR_MODAL_DATA', () => {
+    //         this.setState({
+    //             email: '',
+    //             password: '',
+    //             firstName: '',
+    //             lastName: '',
+    //             address: '',
+    //         })
+    //     })
+    // }
 
     componentDidMount() {
+        let user = this.props.currentUser;
+        if (user && !_.isEmpty(user)) {
+            this.setState({
+                id: user.id,
+                email: user.email,
+                password: user.password,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                address: user.address,
+            })
+        }
     }
 
     toggle = () => {
-        this.props.handleToggleModalUser();
+        this.props.handleToggleModalEditUser();
     }
 
     handleInput = (event, id) => {
@@ -49,7 +62,7 @@ class ModalUser extends Component {
 
     checkValidInput() {
         let valid = true;
-        let arrInput = ['email', 'password', 'firstName', 'lastName', 'address'];
+        let arrInput = ['firstName', 'lastName', 'address'];
         for (let i = 0; i < arrInput.length; i++) {
             if (!this.state[arrInput[i]]) {
                 valid = false;
@@ -60,11 +73,11 @@ class ModalUser extends Component {
         return valid;
     }
 
-    handleAddNewUser = () => {
+    handleEditUser = () => {
         let isValid = this.checkValidInput();
         if (isValid) {
-            //call api create modal
-            this.props.createNewUser(this.state);
+            //call api edit user modal
+            this.props.editUser(this.state);
         }
     }
 
@@ -76,19 +89,21 @@ class ModalUser extends Component {
                 className='modal-user-container'
                 size='lg'
             >
-                <ModalHeader toggle={() => { this.toggle() }}>Create new User</ModalHeader>
+                <ModalHeader toggle={() => { this.toggle() }}>Edit User</ModalHeader>
                 <ModalBody>
                     <div className='modal-user-body'>
                         <div className='input-container'>
                             <label>Email</label>
                             <input type='email'
                                 value={this.state.email}
+                                disabled
                                 onChange={(event) => { this.handleInput(event, 'email') }} />
                         </div>
                         <div className='input-container'>
                             <label>Password</label>
                             <input type='password'
                                 value={this.state.password}
+                                disabled
                                 onChange={(event) => { this.handleInput(event, 'password') }} />
                         </div>
                         <div className='input-container'>
@@ -112,8 +127,8 @@ class ModalUser extends Component {
                     </div>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" className='px-3' onClick={() => { this.handleAddNewUser() }}>
-                        Create new user
+                    <Button color="primary" className='px-3' onClick={() => { this.handleEditUser() }}>
+                        Save changes
                     </Button>{' '}
                     <Button color="secondary" className='px-3' onClick={() => { this.toggle() }}>
                         Cancel
@@ -135,4 +150,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalUser);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalEditUser);
