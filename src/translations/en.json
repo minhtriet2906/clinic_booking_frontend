@@ -1,4 +1,27 @@
 {
+  "homeheader": {
+    "specialty": "Medical Specialty",
+    "search-doctor": "Find a doctor by specialty",
+    "health-facility": "Health facilities",
+    "select-facility": "Choose health facilities",
+    "doctor": "Doctors",
+    "select-doctor": "Choose doctors",
+    "medical-bundle": "Medical bundles",
+    "fully-check": "Fully health check",
+    "support": "Support"
+  },
+  "banner": {
+    "title-1": "COMPREHENSIVE",
+    "title-2": "HEALTH CARE FOUNDATION"
+  },
+  "medicaloptions": {
+    "specialist": "Epecialist Examination",
+    "remote": "Remote Examination",
+    "general": "General Examination",
+    "medical-test": "Medical Test",
+    "mental-health": "Mental Health",
+    "dental": "Dental Examination"
+  },
   "common": {
     "add": "Add",
     "edit": "Edit",
