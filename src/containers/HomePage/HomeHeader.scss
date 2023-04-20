@@ -108,7 +108,7 @@
   opacity: 0.9;
 
   .content-up {
-    height: 50%;
+    height: 70%;
     padding-top: 15px;
     background-image: linear-gradient(
       rgba(126, 126, 126, 0.25),
@@ -158,8 +158,11 @@
     }
   }
   .content-down {
-    height: 50%;
-    padding: 0 50px;
+    height: 35%;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
     background-image: linear-gradient(
       rgba(255, 255, 255, 0.1),
       rgba(255, 255, 255, 0.9),
