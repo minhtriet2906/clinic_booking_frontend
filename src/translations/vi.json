@@ -54,7 +54,7 @@
       "system-administrator": {
         "header": "Quản trị hệ thống",
         "user_manage": "Quản lý người sử dụng",
-        "product-manage": "Quản lý gói",
+        "user_redux": "Quản lý user redux",
         "register-package-group-or-account": "Đăng ký gói dịch vụ cho nhóm/tài khoản"
       },
       "system-parameter": {
@@ -89,7 +89,7 @@
       },
       "sure-delete-user": "Bạn có chắc chắn muốn xóa người dùng này?"
     },
-    "product-manage": {
+    "user_redux": {
       "fail-to-load-foprtype": "Không thể tải về danh sách gói",
       "prid": "Mã gói",
       "prname": "Tên gói",

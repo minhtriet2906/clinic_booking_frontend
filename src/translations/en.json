@@ -54,7 +54,7 @@
       "system-administrator": {
         "header": "System Administrator",
         "user_manage": "User manage",
-        "product-manage": "Package manage",
+        "user_redux": "User redux manage",
         "register-package-group-or-account": "Register service package for group/account"
       },
       "system-parameter": {
@@ -89,7 +89,7 @@
       },
       "sure-delete-user": "Are you sure to delete this user?"
     },
-    "product-manage": {
+    "user_redux": {
       "fail-to-load-foprtype": "Fail to load packages list",
       "prid": "Package ID",
       "prname": "Package name",
