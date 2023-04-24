@@ -1,71 +1,76 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
 
 import Slider from "react-slick";
 // Import css files
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-class Specialty extends Component {
-
+class Doctor extends Component {
 
     render() {
         return (
-            <div className="section-share section-specialty">
+            <div className="section-share section-doctor">
                 <div className="section-container">
                     <div className="section-header">
                         <button>XEM THÊM</button>
-                        <span>Chuyên khoa phổ biến</span>
+                        <span>Bac si noi bat</span>
                     </div>
                     <div className='section-body'>
                         <Slider {...this.props.settings}>
                             <div className='section-customize'>
                                 <div className='outer-bg'>
-                                    <div className='bg-image img-specialty' />
+                                    <div className='bg-image img-doctor' />
                                 </div>
                                 <div className='position text-center'>
-                                    <div>Tim mạch 1</div>
+                                    <div>Giáo sư, Tiến sĩ XXX</div>
+                                    <div>Cơ xương khớp</div>
                                 </div>
                             </div>
                             <div className='section-customize'>
                                 <div className='outer-bg'>
-                                    <div className='bg-image img-specialty' />
+                                    <div className='bg-image img-doctor' />
                                 </div>
                                 <div className='position text-center'>
-                                    <div>Tim mạch 2</div>
+                                    <div>Giáo sư, Tiến sĩ XXX</div>
+                                    <div>Cơ xương khớp</div>
                                 </div>
                             </div>
                             <div className='section-customize'>
                                 <div className='outer-bg'>
-                                    <div className='bg-image img-specialty' />
+                                    <div className='bg-image img-doctor' />
                                 </div>
                                 <div className='position text-center'>
-                                    <div>Tim mạch 3</div>
+                                    <div>Giáo sư, Tiến sĩ XXX</div>
+                                    <div>Cơ xương khớp</div>
                                 </div>
                             </div>
                             <div className='section-customize'>
                                 <div className='outer-bg'>
-                                    <div className='bg-image img-specialty' />
+                                    <div className='bg-image img-doctor' />
                                 </div>
                                 <div className='position text-center'>
-                                    <div>Tim mạch 4</div>
+                                    <div>Giáo sư, Tiến sĩ XXX</div>
+                                    <div>Cơ xương khớp</div>
                                 </div>
                             </div>
                             <div className='section-customize'>
                                 <div className='outer-bg'>
-                                    <div className='bg-image img-specialty' />
+                                    <div className='bg-image img-doctor' />
                                 </div>
                                 <div className='position text-center'>
-                                    <div>Tim mạch5</div>
+                                    <div>Giáo sư, Tiến sĩ XXX</div>
+                                    <div>Cơ xương khớp</div>
                                 </div>
                             </div>
                             <div className='section-customize'>
                                 <div className='outer-bg'>
-                                    <div className='bg-image img-specialty' />
+                                    <div className='bg-image img-doctor' />
                                 </div>
                                 <div className='position text-center'>
-                                    <div>Tim mạch 6</div>
+                                    <div>Giáo sư, Tiến sĩ XXX</div>
+                                    <div>Cơ xương khớp</div>
                                 </div>
                             </div>
                         </Slider>
@@ -79,8 +84,7 @@ class Specialty extends Component {
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.user.isLoggedIn,
-        language: state.app.language,
+        isLoggedIn: state.user.isLoggedIn
     };
 };
 
@@ -89,4 +93,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
+export default connect(mapStateToProps, mapDispatchToProps)(Doctor);

@@ -7,65 +7,65 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-class Specialty extends Component {
+class HandBook extends Component {
 
 
     render() {
         return (
-            <div className="section-share section-specialty">
+            <div className="section-share section-handbook">
                 <div className="section-container">
                     <div className="section-header">
                         <button>XEM THÊM</button>
-                        <span>Chuyên khoa phổ biến</span>
+                        <span>Cẩm nang</span>
                     </div>
                     <div className='section-body'>
                         <Slider {...this.props.settings}>
                             <div className='section-customize'>
                                 <div className='outer-bg'>
-                                    <div className='bg-image img-specialty' />
+                                    <div className='bg-image img-handbook' />
                                 </div>
                                 <div className='position text-center'>
-                                    <div>Tim mạch 1</div>
+                                    <div>Cẩm nang 1</div>
                                 </div>
                             </div>
                             <div className='section-customize'>
                                 <div className='outer-bg'>
-                                    <div className='bg-image img-specialty' />
+                                    <div className='bg-image img-handbook' />
                                 </div>
                                 <div className='position text-center'>
-                                    <div>Tim mạch 2</div>
+                                    <div>Cẩm nang 2</div>
                                 </div>
                             </div>
                             <div className='section-customize'>
                                 <div className='outer-bg'>
-                                    <div className='bg-image img-specialty' />
+                                    <div className='bg-image img-handbook' />
                                 </div>
                                 <div className='position text-center'>
-                                    <div>Tim mạch 3</div>
+                                    <div>Cẩm nang 3</div>
                                 </div>
                             </div>
                             <div className='section-customize'>
                                 <div className='outer-bg'>
-                                    <div className='bg-image img-specialty' />
+                                    <div className='bg-image img-handbook' />
                                 </div>
                                 <div className='position text-center'>
-                                    <div>Tim mạch 4</div>
+                                    <div>Cẩm nang 4</div>
                                 </div>
                             </div>
                             <div className='section-customize'>
                                 <div className='outer-bg'>
-                                    <div className='bg-image img-specialty' />
+                                    <div className='bg-image img-handbook' />
                                 </div>
                                 <div className='position text-center'>
-                                    <div>Tim mạch5</div>
+                                    <div>Cẩm nang 5</div>
                                 </div>
                             </div>
                             <div className='section-customize'>
                                 <div className='outer-bg'>
-                                    <div className='bg-image img-specialty' />
+                                    <div className='bg-image img-handbook' />
                                 </div>
                                 <div className='position text-center'>
-                                    <div>Tim mạch 6</div>
+                                    <div>Cẩm nang 6</div>
                                 </div>
                             </div>
                         </Slider>
@@ -89,4 +89,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
+export default connect(mapStateToProps, mapDispatchToProps)(HandBook);
