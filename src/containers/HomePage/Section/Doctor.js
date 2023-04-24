@@ -15,7 +15,7 @@ class Doctor extends Component {
                 <div className="section-container">
                     <div className="section-header">
                         <button>XEM THÊM</button>
-                        <span>Bac si noi bat</span>
+                        <span>Bác sĩ nổi bật</span>
                     </div>
                     <div className='section-body'>
                         <Slider {...this.props.settings}>

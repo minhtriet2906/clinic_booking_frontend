@@ -24,6 +24,10 @@
     background: #f5f5f5;
   }
 
+  &.section-about {
+    border: 1px solid red;
+  }
+
   .section-container {
     margin: 0 150px;
     display: flex;
@@ -118,4 +122,8 @@ button.slick-arrow {
     font-family: FontAwesome !important;
     font-size: 30px !important;
   }
+}
+
+.home-footer {
+  background: #7dd1fb;
 }

@@ -15,7 +15,7 @@ class MedicalFacility extends Component {
                 <div className="section-container">
                     <div className="section-header">
                         <button>XEM THÊM</button>
-                        <span>Co so y te noi bat</span>
+                        <span>Cơ sở y tế nổi bật</span>
                     </div>
                     <div className='section-body'>
                         <Slider {...this.props.settings}>
@@ -23,22 +23,8 @@ class MedicalFacility extends Component {
                                 <div className='outer-bg'>
                                     <div className='bg-image img-medical-facility' />
                                 </div>
-                                <div>Benh vien da khoa 1</div>
-                            </div>
-                            <div className='section-customize'>
-                                <div className='outer-bg'>
-                                    <div className='bg-image img-medical-facility' />
-                                </div>
                                 <div className='position text-center'>
-                                    <div>Benh vien da khoa 2</div>
-                                </div>
-                            </div>
-                            <div className='section-customize'>
-                                <div className='outer-bg'>
-                                    <div className='bg-image img-medical-facility' />
-                                </div>
-                                <div className='position text-center'>
-                                    <div>Benh vien da khoa 3</div>
+                                    <div>Bệnh viện đa khoa 1</div>
                                 </div>
                             </div>
                             <div className='section-customize'>
@@ -46,7 +32,7 @@ class MedicalFacility extends Component {
                                     <div className='bg-image img-medical-facility' />
                                 </div>
                                 <div className='position text-center'>
-                                    <div>Benh vien da khoa 4</div>
+                                    <div>Bệnh viện đa khoa 2</div>
                                 </div>
                             </div>
                             <div className='section-customize'>
@@ -54,7 +40,7 @@ class MedicalFacility extends Component {
                                     <div className='bg-image img-medical-facility' />
                                 </div>
                                 <div className='position text-center'>
-                                    <div>Benh vien da khoa 5</div>
+                                    <div>Bệnh viện đa khoa 3</div>
                                 </div>
                             </div>
                             <div className='section-customize'>
@@ -62,7 +48,23 @@ class MedicalFacility extends Component {
                                     <div className='bg-image img-medical-facility' />
                                 </div>
                                 <div className='position text-center'>
-                                    <div>Benh vien da khoa 6</div>
+                                    <div>Bệnh viện đa khoa 4</div>
+                                </div>
+                            </div>
+                            <div className='section-customize'>
+                                <div className='outer-bg'>
+                                    <div className='bg-image img-medical-facility' />
+                                </div>
+                                <div className='position text-center'>
+                                    <div>Bệnh viện đa khoa 5</div>
+                                </div>
+                            </div>
+                            <div className='section-customize'>
+                                <div className='outer-bg'>
+                                    <div className='bg-image img-medical-facility' />
+                                </div>
+                                <div className='position text-center'>
+                                    <div>Bệnh viện đa khoa 6</div>
                                 </div>
                             </div>
                         </Slider>
