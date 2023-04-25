@@ -8,7 +8,8 @@
     "select-doctor": "Chọn bác sĩ giỏi",
     "medical-bundle": "Gói khám",
     "fully-check": "Khám sức khỏe tổng quát",
-    "support": "Hỗ trợ"
+    "support": "Hỗ trợ",
+    "welcome": "Xin chào"
   },
   "banner": {
     "title-1": "NỀN TẢNG Y TẾ",
@@ -49,19 +50,21 @@
     "userpass-wrong": "Sai tên đăng nhập hoặc mật khẩu!"
   },
   "menu": {
-    "system": {
-      "header": "Hệ thống",
-      "system-administrator": {
-        "header": "Quản trị hệ thống",
-        "user_manage": "Quản lý người sử dụng",
-        "user_redux": "Quản lý user redux",
-        "register-package-group-or-account": "Đăng ký gói dịch vụ cho nhóm/tài khoản"
-      },
-      "system-parameter": {
-        "header": "Tham số hệ thống"
-      }
+    "admin": {
+      "manage-user": "Người dùng",
+      "manage-doctor": "Quản lý bác sĩ",
+      "manage-admin": "Quản lý admin",
+      "crud": "CRUD User",
+      "crud-redux": "CRUD Redux",
+      "clinic": "Phòng khám",
+      "manage-clinic": "Quản lý phòng khám",
+      "specialty": "Chuyên khoa",
+      "manage-specialty": "Quản lý chuyên khoa",
+      "handbook": "Cẩm nang",
+      "manage-handbook": "Quản lý cẩm nang"
     }
   },
+
   "system": {
     "user_manage": {
       "fail-to-load-fouser": "Không thể tải về danh sách người dùng",

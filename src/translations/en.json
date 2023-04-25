@@ -8,7 +8,8 @@
     "select-doctor": "Choose doctors",
     "medical-bundle": "Medical bundles",
     "fully-check": "Fully health check",
-    "support": "Support"
+    "support": "Support",
+    "welcome": "Welcome"
   },
   "banner": {
     "title-1": "COMPREHENSIVE",
@@ -49,19 +50,21 @@
     "userpass-wrong": "Invalid username or password!"
   },
   "menu": {
-    "system": {
-      "header": "System",
-      "system-administrator": {
-        "header": "System Administrator",
-        "user_manage": "User manage",
-        "user_redux": "User redux manage",
-        "register-package-group-or-account": "Register service package for group/account"
-      },
-      "system-parameter": {
-        "header": "System-parameter"
-      }
+    "admin": {
+      "manage-user": "Users Management",
+      "manage-doctor": "Doctors Management",
+      "manage-admin": "Administrators Management",
+      "crud": "CRUD User",
+      "crud-redux": "CRUD Redux",
+      "clinic": "Clinics",
+      "manage-clinic": "Clinics Management",
+      "specialty": "Medical Specialties",
+      "manage-specialty": "Medical Specialties Management",
+      "handbook": "Handbooks",
+      "manage-handbook": "Handbooks Management"
     }
   },
+
   "system": {
     "user_manage": {
       "fail-to-load-fouser": "Fail to load system users list",

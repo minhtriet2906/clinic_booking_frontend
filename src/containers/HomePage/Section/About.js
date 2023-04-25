@@ -8,7 +8,17 @@ class About extends Component {
     render() {
         return (
             <div className="section-share section-about">
-                About us
+                <div className='content-left'>
+                    <iframe src='https://www.youtube.com/watch?v=px9clychQJ4'
+                        title='Youtube video player'
+                        frameBorder='0'
+                        allow='accelerometer; autoplay; clipboard-write; encrypted-media'
+                        allowFullScreen>
+                    </iframe>
+                </div>
+                <div className='content-right'>
+                    About
+                </div>
             </div>
         );
     }
