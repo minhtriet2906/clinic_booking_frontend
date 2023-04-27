@@ -8,7 +8,7 @@
   color: $common-text-color;
   height: 40px;
   position: relative;
-  background-color: #7dd1fb;
+  background-color: rgb(210, 0, 3);
   .btn-logout {
     color: $common-text-color;
     line-height: 40px;
@@ -35,7 +35,7 @@
 
       &.active {
         opacity: 1;
-        color: cornflowerblue;
+        color: aliceblue;
       }
     }
 
@@ -44,7 +44,7 @@
       opacity: 0.5;
       &.active {
         opacity: 1;
-        color: cornflowerblue;
+        color: aliceblue;
       }
     }
   }

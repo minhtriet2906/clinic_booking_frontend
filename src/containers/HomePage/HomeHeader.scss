@@ -4,8 +4,9 @@
   padding: 0 40px;
   position: sticky;
   top: 0;
-  background-color: white;
   z-index: 10000;
+  background-color: rgb(210, 0, 3);
+  color: white;
 
   .home-header-content {
     width: 100%;
@@ -16,6 +17,8 @@
       width: 20%;
       display: flex;
       align-items: center;
+      color: white;
+
       img {
         height: 100%;
         width: 100%;
@@ -32,7 +35,7 @@
 
     i {
       font-size: 25px;
-      color: gray;
+      color: white;
       cursor: pointer;
     }
 
@@ -63,6 +66,7 @@
         cursor: pointer;
 
         i {
+          color: white;
           font-size: 15px;
           margin-right: 5px;
         }
@@ -70,12 +74,10 @@
 
       .language-vi {
         cursor: pointer;
-        opacity: 0.2;
+        opacity: 0.5;
         &.active {
           opacity: 1;
-          span {
-            color: orange;
-          }
+          color: aliceblue;
         }
 
         &:hover {
@@ -84,14 +86,12 @@
       }
 
       .language-en {
+        opacity: 0.5;
         margin: 0 10px;
         cursor: pointer;
-        opacity: 0.2;
         &.active {
           opacity: 1;
-          span {
-            color: blue;
-          }
+          color: aliceblue;
         }
         &:hover {
           opacity: 1;
@@ -146,7 +146,9 @@
       padding: 10px;
       width: 400px;
       border-radius: 25px;
-      background: #7dd1fb;
+      background: rgb(210, 0, 3);
+      opacity: 0.85;
+      color: white;
 
       i {
         margin: 0 5px;
@@ -193,7 +195,7 @@
           margin: 0 auto;
 
           i {
-            color: #7dd1fb;
+            color: rgb(210, 0, 3);
             font-size: 20px;
           }
         }
@@ -203,7 +205,7 @@
           font-weight: 500;
           cursor: pointer;
           &:hover {
-            color: #7dd1fb;
+            color: rgb(210, 0, 3);
           }
         }
       }

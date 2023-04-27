@@ -22,23 +22,23 @@
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: rgb(125, 209, 251);
+  background-color: rgb(210, 0, 3);
   color: white;
 }
 
 .header-container {
-  background-color: rgb(125, 209, 251);
+  background-color: rgb(210, 0, 3);
 }
 .btn-edit {
   width: 50px;
   border: none;
   outline: none;
   background: transparent;
-  color: blue;
+  color: rgb(210, 0, 3);
 
   &:hover {
     background-color: transparent !important;
-    color: blue !important;
+    color: rgb(210, 0, 3) !important;
   }
 }
 
@@ -47,18 +47,18 @@
   border: none;
   outline: none;
   background: transparent;
-  color: blue;
+  color: rgb(210, 0, 3);
 
   &:hover {
     background-color: transparent !important;
-    color: blue !important;
+    color: rgb(210, 0, 3) !important;
   }
 }
 
 .modal-user-container {
   .modal-content {
     .modal-header {
-      background-color: rgb(125, 209, 251) !important;
+      background-color: rgb(210, 0, 3) !important;
 
       button {
         background-color: transparent !important;
