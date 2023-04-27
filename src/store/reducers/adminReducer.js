@@ -1,33 +1,86 @@
+import { flatMap } from 'lodash';
 import actionTypes from '../actions/actionTypes';
 
 const initialState = {
-    isLoggedIn: false,
-    adminInfo: null
+    isLoading: false,
+    genders: [],
+    roles: [],
+    positions: [],
 }
 
-const appReducer = (state = initialState, action) => {
+const adminReducer = (state = initialState, action) => {
+    let copyState = { ...state };
     switch (action.type) {
-        case actionTypes.ADMIN_LOGIN_SUCCESS:
+        //GENDER
+        case actionTypes.FETCH_GENDER_START:
+            copyState.isLoading = true;
+
+            return {
+                ...copyState,
+            }
+        case actionTypes.FETCH_GENDER_SUCCESS:
+            copyState.genders = action.data;
+            copyState.isLoading = false;
+
+            return {
+                ...copyState,
+            }
+
+        case actionTypes.FETCH_GENDER_FAIL:
+            copyState.isLoading = false;
+            copyState.genders = [];
+
             return {
                 ...state,
-                isLoggedIn: true,
-                adminInfo: action.adminInfo
             }
-        case actionTypes.ADMIN_LOGIN_FAIL:
+
+        //ROLE
+        case actionTypes.FETCH_ROLE_START:
+            copyState.isLoading = true;
             return {
-                ...state,
-                isLoggedIn: false,
-                adminInfo: null
+                ...copyState,
             }
-        case actionTypes.PROCESS_LOGOUT:
+
+        case actionTypes.FETCH_ROLE_SUCCESS:
+            copyState.roles = action.data;
+            copyState.isLoading = false;
             return {
-                ...state,
-                isLoggedIn: false,
-                adminInfo: null
+                ...copyState,
             }
+
+        case actionTypes.FETCH_ROLE_FAIL:
+            copyState.isLoading = false;
+
+            return {
+                ...copyState,
+            }
+
+        //POSITION
+        case actionTypes.FETCH_POSITION_START:
+            copyState.isLoading = true;
+
+            return {
+                ...copyState,
+            }
+
+        case actionTypes.FETCH_POSITION_SUCCESS:
+            copyState.positions = action.data;
+            copyState.isLoading = false;
+
+            return {
+                ...copyState,
+            }
+
+        case actionTypes.FETCH_POSITION_FAIL:
+            copyState.isLoading = false;
+
+            return {
+                ...copyState,
+            }
+
         default:
             return state;
     }
 }
 
-export default appReducer;
+export default adminReducer;
