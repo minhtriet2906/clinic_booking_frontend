@@ -50,9 +50,9 @@ class App extends Component {
                         </span>
 
                         <ToastContainer
-                            className="toast-container" toastClassName="toast-item" bodyClassName="toast-item-body"
-                            autoClose={false} hideProgressBar={true} pauseOnHover={false}
-                            pauseOnFocusLoss={true} closeOnClick={false} draggable={false}
+                            className="toast-container" toastClassName="toast-item" bodyClassName="toast-item-body" position='bottom-right'
+                            autoClose={5000} hideProgressBar={false} pauseOnHover={true} newestOnTop={false}
+                            pauseOnFocusLoss={true} closeOnClick={true} draggable={true} rtl={false}
                             closeButton={<CustomToastCloseButton />}
                         />
                     </div>
