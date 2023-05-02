@@ -76,7 +76,9 @@
     "position": "Chức danh",
     "role": "Vai trò",
     "image": "Ảnh đại diện",
-    "save": "Lưu user"
+    "edit": "Sửa người dùng",
+    "save": "Lưu người dùng",
+    "cancel": "Hủy"
   },
 
   "system": {
