@@ -6,10 +6,33 @@ import Slider from "react-slick";
 // Import css files
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import * as actions from '../../../store/actions'
+import { LANGUAGES } from '../../../utils'
 
 class Doctor extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            doctors: []
+        }
+    }
+
+    componentDidMount() {
+        this.props.getDoctors();
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.doctors !== this.props.doctors) {
+            this.setState({
+                doctors: this.props.doctors,
+            })
+        }
+    }
 
     render() {
+        let doctorsList = this.state.doctors;
+        doctorsList = doctorsList.concat(doctorsList);
+        console.log(doctorsList);
         return (
             <div className="section-share section-doctor">
                 <div className="section-container">
@@ -19,60 +42,29 @@ class Doctor extends Component {
                     </div>
                     <div className='section-body'>
                         <Slider {...this.props.settings}>
-                            <div className='section-customize'>
-                                <div className='outer-bg'>
-                                    <div className='bg-image img-doctor' />
-                                </div>
-                                <div className='position text-center'>
-                                    <div>Giáo sư, Tiến sĩ XXX</div>
-                                    <div>Cơ xương khớp</div>
-                                </div>
-                            </div>
-                            <div className='section-customize'>
-                                <div className='outer-bg'>
-                                    <div className='bg-image img-doctor' />
-                                </div>
-                                <div className='position text-center'>
-                                    <div>Giáo sư, Tiến sĩ XXX</div>
-                                    <div>Cơ xương khớp</div>
-                                </div>
-                            </div>
-                            <div className='section-customize'>
-                                <div className='outer-bg'>
-                                    <div className='bg-image img-doctor' />
-                                </div>
-                                <div className='position text-center'>
-                                    <div>Giáo sư, Tiến sĩ XXX</div>
-                                    <div>Cơ xương khớp</div>
-                                </div>
-                            </div>
-                            <div className='section-customize'>
-                                <div className='outer-bg'>
-                                    <div className='bg-image img-doctor' />
-                                </div>
-                                <div className='position text-center'>
-                                    <div>Giáo sư, Tiến sĩ XXX</div>
-                                    <div>Cơ xương khớp</div>
-                                </div>
-                            </div>
-                            <div className='section-customize'>
-                                <div className='outer-bg'>
-                                    <div className='bg-image img-doctor' />
-                                </div>
-                                <div className='position text-center'>
-                                    <div>Giáo sư, Tiến sĩ XXX</div>
-                                    <div>Cơ xương khớp</div>
-                                </div>
-                            </div>
-                            <div className='section-customize'>
-                                <div className='outer-bg'>
-                                    <div className='bg-image img-doctor' />
-                                </div>
-                                <div className='position text-center'>
-                                    <div>Giáo sư, Tiến sĩ XXX</div>
-                                    <div>Cơ xương khớp</div>
-                                </div>
-                            </div>
+                            {doctorsList && doctorsList.length > 0 &&
+                                doctorsList.map((item, index) => {
+                                    let imgBase64 = '';
+                                    if (item.image) {
+                                        imgBase64 = new Buffer(item.image, 'base64').toString('binary');
+                                    }
+                                    let nameVi = `${item.positionData.valueVi} ${item.lastName} ${item.firstName}`;
+                                    let nameEn = `${item.positionData.valueEn} ${item.lastName} ${item.firstName}`;
+                                    return (
+                                        <div className='section-customize' key={index}>
+                                            <div className='outer-bg'>
+                                                <div className='bg-image img-doctor'
+                                                    style={{ backgroundImage: `url(${imgBase64})` }}
+                                                />
+                                            </div>
+                                            <div className='position text-center'>
+                                                <div>{this.props.language === LANGUAGES.VI ? nameVi : nameEn}</div>
+                                                <div>Co xuong khop</div>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
                         </Slider>
                     </div>
                 </div>
@@ -84,12 +76,15 @@ class Doctor extends Component {
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.user.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn,
+        language: state.app.language,
+        doctors: state.admin.doctors
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        getDoctors: () => dispatch(actions.fetchDoctorsStart()),
     };
 };
 

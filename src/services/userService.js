@@ -29,11 +29,17 @@ const getAllCodeService = (inputType) => {
     console.log('check input type ', inputType);
     return axios.get(`/api/allcode?type=${inputType}`);
 }
+
+const getTopDoctorsService = (limit) => {
+    return axios.get(`/api/top_doctor?limit=${limit}`)
+}
+
 export {
     handleLogin,
     getAllUsers,
     createNewUserService,
     deleteUserService,
     editUserService,
-    getAllCodeService
+    getAllCodeService,
+    getTopDoctorsService
 }
