@@ -82,6 +82,11 @@
     "cancel": "Cancel"
   },
 
+  "homepage": {
+    "more-info": "MORE INFO",
+    "top-doctor": "Top doctors"
+  },
+
   "system": {
     "user_manage": {
       "fail-to-load-fouser": "Fail to load system users list",

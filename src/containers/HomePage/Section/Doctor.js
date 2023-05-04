@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import * as actions from '../../../store/actions'
 import { LANGUAGES } from '../../../utils'
+import { FormattedMessage } from 'react-intl';
 
 class Doctor extends Component {
     constructor(props) {
@@ -31,14 +32,14 @@ class Doctor extends Component {
 
     render() {
         let doctorsList = this.state.doctors;
-        doctorsList = doctorsList.concat(doctorsList);
+        // doctorsList = doctorsList.concat(doctorsList);
         console.log(doctorsList);
         return (
             <div className="section-share section-doctor">
                 <div className="section-container">
                     <div className="section-header">
-                        <button>XEM THÊM</button>
-                        <span>Bác sĩ nổi bật</span>
+                        <button><div><FormattedMessage id='homepage.more-info'></FormattedMessage></div></button>
+                        <span><div><FormattedMessage id='homepage.top-doctor'></FormattedMessage></div></span>
                     </div>
                     <div className='section-body'>
                         <Slider {...this.props.settings}>

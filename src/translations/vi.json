@@ -81,6 +81,11 @@
     "cancel": "Hủy"
   },
 
+  "homepage": {
+    "more-info": "XEM THÊM",
+    "top-doctor": "Bác sĩ nổi bật"
+  },
+
   "system": {
     "user_manage": {
       "fail-to-load-fouser": "Không thể tải về danh sách người dùng",
