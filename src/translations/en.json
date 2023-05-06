@@ -88,7 +88,7 @@
   },
 
   "system": {
-    "user_manage": {
+    "user-manage": {
       "fail-to-load-fouser": "Fail to load system users list",
       "user-id": "User ID",
       "usertype": "User type",
@@ -114,7 +114,7 @@
       },
       "sure-delete-user": "Are you sure to delete this user?"
     },
-    "user_redux": {
+    "user-redux": {
       "fail-to-load-foprtype": "Fail to load packages list",
       "prid": "Package ID",
       "prname": "Package name",

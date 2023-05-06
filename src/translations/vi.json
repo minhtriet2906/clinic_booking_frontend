@@ -87,7 +87,7 @@
   },
 
   "system": {
-    "user_manage": {
+    "user-manage": {
       "fail-to-load-fouser": "Không thể tải về danh sách người dùng",
       "user-id": "Mã người sử dụng",
       "usertype": "Loại người dùng",
@@ -113,7 +113,7 @@
       },
       "sure-delete-user": "Bạn có chắc chắn muốn xóa người dùng này?"
     },
-    "user_redux": {
+    "user-redux": {
       "fail-to-load-foprtype": "Không thể tải về danh sách gói",
       "prid": "Mã gói",
       "prname": "Tên gói",
