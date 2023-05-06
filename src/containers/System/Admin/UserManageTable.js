@@ -54,8 +54,6 @@ class UserManageTable extends Component {
         let arrUsers = this.state.users;
         return (
             <React.Fragment>
-
-
                 <table id='user-manage-table'>
                     <thead>
                         <tr>

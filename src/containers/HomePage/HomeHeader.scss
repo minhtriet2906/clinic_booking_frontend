@@ -75,7 +75,7 @@
       .language-vi {
         cursor: pointer;
         opacity: 0.5;
-        &.active {
+        &:active {
           opacity: 1;
           color: aliceblue;
         }
@@ -89,7 +89,7 @@
         opacity: 0.5;
         margin: 0 10px;
         cursor: pointer;
-        &.active {
+        &:active {
           opacity: 1;
           color: aliceblue;
         }

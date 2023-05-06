@@ -19,7 +19,7 @@ class Doctor extends Component {
     }
 
     componentDidMount() {
-        this.props.getDoctors();
+        this.props.getTopDoctors();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -85,7 +85,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getDoctors: () => dispatch(actions.fetchDoctorsStart()),
+        getTopDoctors: () => dispatch(actions.fetchTopDoctorsStart()),
     };
 };
 

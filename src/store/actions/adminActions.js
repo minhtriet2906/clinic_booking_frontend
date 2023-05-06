@@ -1,5 +1,8 @@
 import actionTypes from './actionTypes';
-import { getAllCodeService, createNewUserService, getAllUsers, deleteUserService, editUserService, getTopDoctorsService } from '../../services/userService';
+import {
+    getAllCodeService, createNewUserService, getAllUsers,
+    deleteUserService, editUserService, getTopDoctorsService, getAllDoctorsService, saveDoctorInfoService
+} from '../../services/userService';
 import { toast } from 'react-toastify';
 
 
@@ -183,6 +186,35 @@ export const editUserFail = () => ({
     type: actionTypes.EDIT_USER_FAIL,
 })
 
+//edit user 
+export const saveDoctorInfo = (userData) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await saveDoctorInfoService(userData);
+            if (res && res.errorCode === 0) {
+                dispatch(saveDoctorInfoSuccess());
+                toast.success('Save Doctor Info Success');
+            }
+            else {
+                toast.error('Error!');
+                dispatch(saveDoctorInfoFail());
+            }
+        } catch (error) {
+            toast.error('Error!');
+            dispatch(saveDoctorInfoFail());
+            console.log(error);
+        }
+    }
+}
+
+export const saveDoctorInfoSuccess = () => ({
+    type: actionTypes.SAVE_DOCTORS_INFO_SUCCESS,
+})
+
+export const saveDoctorInfoFail = () => ({
+    type: actionTypes.SAVE_DOCTORS_INFO_FAIL,
+})
+
 //fetch all users
 export const fetchAllUsersStart = () => {
     return async (dispatch, getState) => {
@@ -212,10 +244,27 @@ export const fetchAllUsersFail = () => ({
 
 
 // fetch doctors
-export const fetchDoctorsStart = () => {
+export const fetchTopDoctorsStart = () => {
     return async (dispatch, getState) => {
         try {
             let res = await getTopDoctorsService(10);
+            if (res && res.errorCode === 0) {
+                dispatch(fetchDoctorsSuccess(res.doctors));
+            }
+            else {
+                dispatch(fetchDoctorsFail());
+            }
+        } catch (error) {
+            dispatch(fetchDoctorsFail());
+            console.log(error);
+        }
+    }
+}
+
+export const fetchAllDoctorsStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllDoctorsService();
             if (res && res.errorCode === 0) {
                 dispatch(fetchDoctorsSuccess(res.doctors));
             }
@@ -237,6 +286,7 @@ export const fetchDoctorsSuccess = (data) => ({
 export const fetchDoctorsFail = () => ({
     type: actionTypes.FETCH_DOCTORS_FAIL,
 })
+
 
 
 
