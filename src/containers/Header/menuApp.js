@@ -15,9 +15,19 @@ export const adminMenu = [
                 //     { name: 'menu.system.system-administrator.user-redux', link: '/system/user-redux' },
                 // ]
             },
-            {
-                name: 'menu.admin.manage-admin', link: '/system/user_admin'
+            // {
+            //     name: 'menu.admin.manage-admin', link: '/system/user_admin'
+            // },
+            { //Doctor's schedule manage
+                name: 'menu.doctor.manage-schedule',
+                menus: [
+                    {
+                        name: 'menu.doctor.schedule', link: '/system/user-manage'
+                    },
+
+                ]
             },
+
         ]
     },
 
@@ -47,4 +57,17 @@ export const adminMenu = [
             }
         ]
     },
+];
+
+export const doctorMenu = [
+    { //Doctor's schedule manage
+        name: 'menu.admin.manage-user',
+        menus: [
+            {
+                name: 'menu.doctor.manage-schedule', link: '/doctor/schedule-manage'
+            },
+
+        ]
+    },
+
 ];
