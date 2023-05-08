@@ -8,6 +8,7 @@ import MdEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
 import Select from 'react-select';
 import { LANGUAGES } from '../../../utils';
+import { getDoctorDetailsService } from '../../../services/userService';
 
 
 
@@ -66,8 +67,25 @@ class DoctorManage extends Component {
         this.props.saveDoctorInfo(doctorInfo);
     }
 
-    handleSelectDoctor = selectedDoctor => {
+    handleSelectDoctor = async (selectedDoctor) => {
         this.setState({ selectedDoctor })
+
+        let res = await getDoctorDetailsService(selectedDoctor.value);
+        if (res && res.errorCode === 0 && res.data && res.data.Markdown) {
+            let markdown = res.data.Markdown;
+            this.setState({
+                contentHTML: markdown.contentHTML,
+                contentMarkdown: markdown.contentMarkdown,
+                description: markdown.description
+            })
+        }
+        else {
+            this.setState({
+                contentHTML: '',
+                contentMarkdown: '',
+                description: ''
+            })
+        }
         console.log('doctor ', selectedDoctor.value);
     }
 
@@ -126,7 +144,8 @@ class DoctorManage extends Component {
                 <MdEditor
                     style={{ height: '500px' }}
                     renderHTML={text => mdParser.render(text)}
-                    onChange={this.handleEditorChange} />
+                    onChange={this.handleEditorChange}
+                    value={this.state.contentMarkdown} />
 
                 <button
                     className='save-doctor-content'

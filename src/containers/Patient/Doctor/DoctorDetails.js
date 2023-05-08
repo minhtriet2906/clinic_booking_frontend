@@ -48,7 +48,6 @@ class DoctorDetails extends Component {
 
                     </HomeHeader>
                     <div className='doctor-details-container'>
-                        Doctor details
                         <div className='doctor-intro'>
                             <div className='left-content'
                                 style={{ backgroundImage: `url(${doctorDetails && doctorDetails.image ? doctorDetails.image : null})` }}
