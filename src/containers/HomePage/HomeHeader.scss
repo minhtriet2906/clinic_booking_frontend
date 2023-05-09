@@ -71,30 +71,34 @@
           margin-right: 5px;
         }
       }
+      .language {
+        display: flex;
 
-      .language-vi {
-        cursor: pointer;
-        opacity: 0.5;
-        &:active {
-          opacity: 1;
-          color: aliceblue;
+        .language-vi {
+          cursor: pointer;
+          opacity: 0.5;
+
+          &.active {
+            opacity: 1;
+            color: aliceblue;
+          }
+
+          &:hover {
+            opacity: 1;
+          }
         }
 
-        &:hover {
-          opacity: 1;
-        }
-      }
-
-      .language-en {
-        opacity: 0.5;
-        margin: 0 10px;
-        cursor: pointer;
-        &:active {
-          opacity: 1;
-          color: aliceblue;
-        }
-        &:hover {
-          opacity: 1;
+        .language-en {
+          opacity: 0.5;
+          margin: 0 10px;
+          cursor: pointer;
+          &.active {
+            opacity: 1;
+            color: aliceblue;
+          }
+          &:hover {
+            opacity: 1;
+          }
         }
       }
     }

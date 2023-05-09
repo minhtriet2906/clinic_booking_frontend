@@ -23,6 +23,7 @@ class HomeHeader extends Component {
     render() {
         let language = this.props.language;
         console.log("user ", this.props.userInfo);
+        console.log(this.props.language);
         return (
             <React.Fragment>
                 <div className='home-header-container'>
@@ -52,14 +53,18 @@ class HomeHeader extends Component {
                         </div>
                         <div className='right-content'>
                             <div className='support'><i className='fas fa-question-circle'><FormattedMessage id="homeheader.support" /></i></div>
-                            <span className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}
-                                onClick={() => this.changeLanguage(LANGUAGES.VI)}>
-                                VN
-                            </span>
-                            <span className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}
-                                onClick={() => this.changeLanguage(LANGUAGES.EN)}>
-                                EN
-                            </span>
+                            <div className='language'>
+                                <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}>
+                                    <span onClick={() => this.changeLanguage(LANGUAGES.VI)}>
+                                        VN
+                                    </span>
+                                </div>
+                                <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}>
+                                    <span onClick={() => this.changeLanguage(LANGUAGES.EN)}>
+                                        EN
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -113,7 +118,7 @@ const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn,
         userInfo: state.user.userInfo,
-        lang: state.app.language,
+        language: state.app.language,
     };
 };
 

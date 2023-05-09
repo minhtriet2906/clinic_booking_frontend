@@ -36,8 +36,13 @@ class ScheduleManage extends Component {
         }
 
         if (prevProps.timeSlots !== this.props.timeSlots) {
+            let data = this.props.timeSlots;
+            if (data && data.length > 0) {
+                data = data.map(item => ({ ...item, isSelected: false }))
+            }
+
             this.setState({
-                timeSlotOptions: this.props.timeSlots,
+                timeSlotOptions: data
             })
         }
     }
@@ -68,7 +73,6 @@ class ScheduleManage extends Component {
 
     handleSelectDoctor = async (selectedDoctor) => {
         this.setState({ selectedDoctor })
-        console.log(selectedDoctor);
     }
 
     handleSelectDatePicker = async (date) => {
@@ -77,9 +81,26 @@ class ScheduleManage extends Component {
         })
     }
 
-    render() {
-        console.log('time slots ', this.state.timeSlotOptions);
+    handleSelectTimeSlot = (timeSlot) => {
         let { timeSlotOptions } = this.state;
+
+        if (timeSlotOptions && timeSlotOptions.length > 0) {
+            timeSlotOptions = timeSlotOptions.map(item => {
+                if (item.id === timeSlot.id) {
+                    item.isSelected = !item.isSelected;
+                }
+                return item;
+            })
+
+            this.setState({
+                timeSlotOptions: timeSlotOptions
+            })
+        }
+    }
+
+    render() {
+        let { timeSlotOptions } = this.state;
+        console.log('time slots ', this.state.timeSlotOptions);
         return (
             <div className="schedule-manage-container">
                 <div className="schedule-manage-title">
@@ -109,7 +130,9 @@ class ScheduleManage extends Component {
                             {timeSlotOptions && timeSlotOptions.length > 0 &&
                                 timeSlotOptions.map((item, index) => {
                                     return (
-                                        <button className="btn btn-schedule" key={index}>
+                                        <button className={item.isSelected === true ? "btn btn-schedule active" : "btn btn-schedule"}
+                                            key={index}
+                                            onClick={() => this.handleSelectTimeSlot(item)}>
                                             {this.props.language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                         </button>
                                     )

@@ -19,11 +19,18 @@
       padding: 5px 15px;
       border: 1px solid gray;
     }
-  }
 
-  .btn-save-schedule {
-    margin-top: 20px;
-    background-color: red;
-    cursor: pointer;
+    .btn-schedule {
+      &.active {
+        background-color: red;
+        color: aliceblue;
+      }
+    }
+
+    .btn-save-schedule {
+      margin-top: 20px;
+      background-color: red;
+      cursor: pointer;
+    }
   }
 }
