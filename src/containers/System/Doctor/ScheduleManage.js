@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import './ScheduleManage.scss'
 import { FormattedMessage } from "react-intl";
-import { LANGUAGES } from '../../../utils';
+import { LANGUAGES, dateFormat } from '../../../utils';
 import * as actions from "../../../store/actions"
 import Select from 'react-select';
 import DatePicker from "../../../components/Input/DatePicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { toast } from "react-toastify";
 import moment from "moment";
+import _ from "lodash";
 
 class ScheduleManage extends Component {
     constructor(props) {
@@ -98,6 +100,39 @@ class ScheduleManage extends Component {
         }
     }
 
+    handleSaveSchedule = () => {
+        let { timeSlotOptions, selectedDoctor, selectedDate } = this.state;
+        let schedules = []
+
+        if (!selectedDate) {
+            toast.error('Invalid date');
+        }
+
+        if (!selectedDoctor && _.isEmpty(selectedDoctor)) {
+            toast.error('Invalid doctor')
+        }
+
+        let formattedDate = moment(selectedDate).format(dateFormat.SEND_TO_SERVER);
+
+        if (timeSlotOptions && timeSlotOptions.length > 0) {
+            let selectedTimeSlots = timeSlotOptions.filter(item => item.isSelected === true);
+            if (selectedTimeSlots && selectedTimeSlots.length > 0) {
+                selectedTimeSlots.map(time => {
+                    let doctorSchedule = {}
+                    doctorSchedule.doctorId = selectedDoctor.value;
+                    doctorSchedule.date = formattedDate;
+                    doctorSchedule.time = time.keyMap;
+                    schedules.push(doctorSchedule);
+                })
+            }
+            else {
+                toast.error('Empty schedules');
+                return;
+            }
+        }
+        console.log('schedules', schedules);
+    }
+
     render() {
         let { timeSlotOptions } = this.state;
         console.log('time slots ', this.state.timeSlotOptions);
@@ -138,7 +173,10 @@ class ScheduleManage extends Component {
                                     )
                                 })}
                             <div className="col-12">
-                                <button className="btn btn-primary btn btn-save-schedule"><FormattedMessage id='manage-schedule.save'></FormattedMessage></button>
+                                <button className="btn btn-primary btn btn-save-schedule"
+                                    onClick={() => this.handleSaveSchedule()}>
+                                    <FormattedMessage id='manage-schedule.save' />
+                                </button>
                             </div>
                         </div>
                     </div>
