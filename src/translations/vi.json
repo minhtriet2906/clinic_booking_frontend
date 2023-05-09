@@ -84,6 +84,13 @@
     "cancel": "Hủy"
   },
 
+  "manage-schedule": {
+    "title": "Quản lý lịch khám bệnh của bác sĩ",
+    "choose-doctor": "Chọn bác sĩ",
+    "choose-date": "Chọn ngày",
+    "save": "Lưu thông tin"
+  },
+
   "homepage": {
     "more-info": "XEM THÊM",
     "top-doctor": "Bác sĩ nổi bật"

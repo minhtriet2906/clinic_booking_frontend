@@ -8,6 +8,7 @@ const initialState = {
     positions: [],
     users: [],
     doctors: [],
+    timeSlots: [],
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -105,6 +106,21 @@ const adminReducer = (state = initialState, action) => {
 
         case actionTypes.FETCH_DOCTORS_FAIL:
             copyState.doctors = [];
+
+            return {
+                ...copyState,
+            }
+
+        //SCHEDULE TIME
+        case actionTypes.FETCH_SCHEDULE_TIME_SUCCESS:
+            copyState.timeSlots = action.timeSlots;
+
+            return {
+                ...copyState,
+            }
+
+        case actionTypes.FETCH_SCHEDULE_TIME_FAIL:
+            copyState.timeSlots = [];
 
             return {
                 ...copyState,

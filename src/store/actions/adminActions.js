@@ -261,6 +261,7 @@ export const fetchTopDoctorsStart = () => {
     }
 }
 
+// fetch all doctors
 export const fetchAllDoctorsStart = () => {
     return async (dispatch, getState) => {
         try {
@@ -287,6 +288,31 @@ export const fetchDoctorsFail = () => ({
     type: actionTypes.FETCH_DOCTORS_FAIL,
 })
 
+// fetch all schedule times
+export const fetchScheduleTime = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllCodeService('TIME');
+            if (res && res.errorCode === 0) {
+                dispatch(fetchScheduletimeSuccess(res.data));
+            }
+            else {
+                dispatch(fetchScheduletimeFail());
+            }
+        } catch (error) {
+            dispatch(fetchScheduletimeFail());
+            console.log(error);
+        }
+    }
+}
 
+export const fetchScheduletimeSuccess = (data) => ({
+    type: actionTypes.FETCH_SCHEDULE_TIME_SUCCESS,
+    timeSlots: data
+})
+
+export const fetchScheduletimeFail = () => ({
+    type: actionTypes.FETCH_SCHEDULE_TIME_FAIL,
+})
 
 

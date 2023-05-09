@@ -10,24 +10,12 @@ export const adminMenu = [
             },
             {
                 name: 'menu.admin.manage-doctor', link: '/system/doctor-manage'
-                // subMenus: [
-                //     { name: 'menu.system.system-administrator.user-manage', link: '/system/user-manage' },
-                //     { name: 'menu.system.system-administrator.user-redux', link: '/system/user-redux' },
-                // ]
+
             },
-            // {
-            //     name: 'menu.admin.manage-admin', link: '/system/user_admin'
-            // },
             { //Doctor's schedule manage
-                name: 'menu.doctor.manage-schedule',
-                menus: [
-                    {
-                        name: 'menu.doctor.schedule', link: '/system/user-manage'
-                    },
+                name: 'menu.doctor.manage-schedule', link: '/doctor/schedule-manage'
 
-                ]
             },
-
         ]
     },
 

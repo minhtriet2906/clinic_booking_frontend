@@ -85,6 +85,13 @@
     "cancel": "Cancel"
   },
 
+  "manage-schedule": {
+    "title": "Doctor's Schedule Management",
+    "choose-doctor": "Choose doctor",
+    "choose-date": "Choose date",
+    "save": "Save"
+  },
+
   "homepage": {
     "more-info": "MORE INFO",
     "top-doctor": "Top doctors"
