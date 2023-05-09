@@ -30,6 +30,12 @@ class Login extends Component {
         })
     }
 
+    handleKeyDown = (event) => {
+        if (event.key === 'Enter' || event.keyCode === 13) {
+            this.handleLogin();
+        }
+    }
+
     handleLogin = async () => {
         this.setState({
             errorMessage: ''
@@ -79,7 +85,8 @@ class Login extends Component {
                             <input type='password'
                                 placeholder='Enter your password'
                                 className='form-control'
-                                onChange={(event) => this.handleOnChangePassword(event)} />
+                                onChange={(event) => this.handleOnChangePassword(event)}
+                                onKeyDown={(event) => this.handleKeyDown(event)} />
                         </div>
                         <div className='col-12' style={{ color: 'red' }}>
                             {this.state.errorMessage}
