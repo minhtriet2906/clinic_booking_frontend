@@ -11,6 +11,8 @@ import { toast } from "react-toastify";
 import moment from "moment";
 import _ from "lodash";
 
+import { saveBulkScheduleService } from "../../../services/userService";
+
 class ScheduleManage extends Component {
     constructor(props) {
         super(props);
@@ -100,19 +102,23 @@ class ScheduleManage extends Component {
         }
     }
 
-    handleSaveSchedule = () => {
+    handleSaveSchedule = async () => {
         let { timeSlotOptions, selectedDoctor, selectedDate } = this.state;
         let schedules = []
 
         if (!selectedDate) {
             toast.error('Invalid date');
+            return;
         }
 
         if (!selectedDoctor && _.isEmpty(selectedDoctor)) {
-            toast.error('Invalid doctor')
+            toast.error('Invalid doctor');
+            return;
         }
 
-        let formattedDate = moment(selectedDate).format(dateFormat.SEND_TO_SERVER);
+        // let formattedDate = moment(selectedDate).format(dateFormat.SEND_TO_SERVER);
+        // let formattedDate = moment(selectedDate).unix();
+        let formattedDate = new Date(selectedDate).getTime();
 
         if (timeSlotOptions && timeSlotOptions.length > 0) {
             let selectedTimeSlots = timeSlotOptions.filter(item => item.isSelected === true);
@@ -121,7 +127,7 @@ class ScheduleManage extends Component {
                     let doctorSchedule = {}
                     doctorSchedule.doctorId = selectedDoctor.value;
                     doctorSchedule.date = formattedDate;
-                    doctorSchedule.time = time.keyMap;
+                    doctorSchedule.timeType = time.keyMap;
                     schedules.push(doctorSchedule);
                 })
             }
@@ -131,6 +137,17 @@ class ScheduleManage extends Component {
             }
         }
         console.log('schedules', schedules);
+        let res = await saveBulkScheduleService({
+            schedulesArr: schedules,
+            doctorId: selectedDoctor.value,
+            formattedDate: formattedDate
+        });
+        console.log('response ', res);
+
+        if (res && res.errorCode === 0) {
+            console.log('saved');
+        }
+
     }
 
     render() {

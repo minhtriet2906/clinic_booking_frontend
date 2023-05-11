@@ -26,12 +26,11 @@ const editUserService = (inputData) => {
 }
 
 const getAllCodeService = (inputType) => {
-    console.log('check input type ', inputType);
     return axios.get(`/api/allcode?type=${inputType}`);
 }
 
 const getTopDoctorsService = (limit) => {
-    return axios.get(`/api/top-doctors?limit=${limit}`)
+    return axios.get(`/api/top-doctors?limit=${limit}`);
 }
 
 const getAllDoctorsService = () => {
@@ -39,11 +38,15 @@ const getAllDoctorsService = () => {
 }
 
 const saveDoctorInfoService = (data) => {
-    return axios.post('/api/save-doctor-info', data)
+    return axios.post('/api/save-doctor-info', data);
 }
 
 const getDoctorDetailsService = (doctorId) => {
-    return axios.get(`/api/get-doctor-details?id=${doctorId}`)
+    return axios.get(`/api/get-doctor-details?id=${doctorId}`);
+}
+
+const saveBulkScheduleService = (data) => {
+    return axios.post(`/api/bulk-create-schedule`, data);
 }
 
 export {
@@ -56,5 +59,6 @@ export {
     getTopDoctorsService,
     getAllDoctorsService,
     saveDoctorInfoService,
-    getDoctorDetailsService
+    getDoctorDetailsService,
+    saveBulkScheduleService
 }
