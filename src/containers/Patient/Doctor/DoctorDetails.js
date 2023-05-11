@@ -4,6 +4,7 @@ import { LANGUAGES } from '../../../utils';
 import HomeHeader from '../../HomePage/HomeHeader';
 import './DoctorDetails.scss'
 import { getDoctorDetailsService } from '../../../services/userService';
+import DoctorSchedules from './DoctorSchedules';
 
 class DoctorDetails extends Component {
 
@@ -65,7 +66,16 @@ class DoctorDetails extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className='doctor-schedule'></div>
+                        <div className='doctor-schedule'>
+                            <div className='left-content'>
+                                <DoctorSchedules
+                                    doctorIdFromDetails={doctorDetails && doctorDetails.id ? doctorDetails.id : -1}>
+                                </DoctorSchedules>
+                            </div>
+                            <div className='right-content'>
+
+                            </div>
+                        </div>
                         <div className='doctor-info'>
                             {doctorDetails && doctorDetails.Markdown && doctorDetails.Markdown.contentHTML
                                 && <div dangerouslySetInnerHTML={{ __html: doctorDetails.Markdown.contentHTML }}>

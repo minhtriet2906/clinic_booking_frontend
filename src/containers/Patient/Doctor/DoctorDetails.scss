@@ -31,6 +31,21 @@
     }
   }
 
+  .doctor-schedule {
+    margin: 0 100px;
+    display: flex;
+    height: 200px;
+    border: 1px solid red;
+
+    .left-content {
+      width: 50%;
+    }
+
+    .tight-content {
+      width: 50%;
+    }
+  }
+
   .doctor-info {
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
