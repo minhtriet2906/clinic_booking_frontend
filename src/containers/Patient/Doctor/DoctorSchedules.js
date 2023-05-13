@@ -32,12 +32,17 @@ class DoctorSchedules extends Component {
         }
     }
 
+    capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     setWeekDays = async (language) => {
         let weekDays = [];
         for (let i = 0; i < 7; i++) {
             let day = {}
             if (language === LANGUAGES.VI) {
                 day.label = moment(new Date()).add(i, 'days').format('dddd - DD/MM');
+                day.label = this.capitalizeFirstLetter(day.label);
             }
             else {
                 day.label = moment(new Date()).add(i, 'days').locale('en').format('dddd - DD/MM');
@@ -62,18 +67,20 @@ class DoctorSchedules extends Component {
             let res = await getDoctorSchedulesByDateService(doctorId, formattedDate);
             console.log('res ', res);
 
-            this.setState({
-                schedules: res.data
-            })
+            if (res && res.errorCode === 0) {
+                this.setState({
+                    schedules: res.data
+                })
+            }
         }
     }
 
     render() {
         let { days, schedules } = this.state;
-
+        let { language } = this.props;
         return (
             <div className='doctor-schedules-container'>
-                <div className='all-schedule'>
+                <div className='all-schedules'>
                     <select onChange={(event) => this.handleSelectDate(event)}>
                         {days && days.length > 0 &&
                             days.map((item, index) => {
@@ -87,14 +94,22 @@ class DoctorSchedules extends Component {
                     </select>
                 </div>
                 <div className='available-time'>
-                    {schedules && schedules.length > 0 &&
-                        schedules.map((item, index) => {
-                            return (
-                                <div>
-                                    {item.timeType}
-                                </div>
-                            )
-                        })}
+                    <div className='text-schedule'>
+                        <span><i className='fas fa-calendar-alt'>Lịch khám</i></span>
+                    </div>
+                    <div className='schedule-content'>
+                        {schedules && schedules.length > 0 ?
+                            schedules.map((item, index) => {
+                                let scheduleDisplay = language === LANGUAGES.VI ?
+                                    item.timeTypeData.valueVi : item.timeTypeData.valueEn
+                                return (
+                                    <button key={index}>{scheduleDisplay}</button>
+                                )
+                            })
+                            :
+                            <div>Khong co lich hen trong hom nay</div>
+                        }
+                    </div>
                 </div>
             </div>
         );
