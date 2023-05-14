@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import './ScheduleManage.scss'
 import { FormattedMessage } from "react-intl";
-import { LANGUAGES, dateFormat } from '../../../utils';
+import { LANGUAGES } from '../../../utils';
 import * as actions from "../../../store/actions"
 import Select from 'react-select';
 import DatePicker from "../../../components/Input/DatePicker";
@@ -142,10 +142,14 @@ class ScheduleManage extends Component {
             doctorId: selectedDoctor.value,
             formattedDate: formattedDate
         });
-        console.log('response ', res);
 
         if (res && res.errorCode === 0) {
             console.log('saved');
+            toast.success("Doctor's schedules created");
+        }
+        else {
+            toast.error('Error!');
+            console.log(res);
         }
 
     }
@@ -153,6 +157,8 @@ class ScheduleManage extends Component {
     render() {
         let { timeSlotOptions } = this.state;
         console.log('time slots ', this.state.timeSlotOptions);
+        let minDate = new Date(new Date().setDate(new Date().getDate() - 1));
+
         return (
             <div className="schedule-manage-container">
                 <div className="schedule-manage-title">
@@ -175,7 +181,7 @@ class ScheduleManage extends Component {
                                 className="form-control"
                                 onChange={this.handleSelectDatePicker}
                                 value={this.state.selectedDate}
-                                minDate={new Date()}
+                                minDate={minDate}
                             />
                         </div>
                         <div className="col-12 schedule-time-container">

@@ -4,7 +4,7 @@ import './DoctorSchedules.scss'
 import moment from 'moment/moment';
 import localization from 'moment/locale/vi'
 import { getDoctorSchedulesByDateService } from '../../../services/userService';
-
+import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../../utils';
 
 class DoctorSchedules extends Component {
@@ -19,16 +19,23 @@ class DoctorSchedules extends Component {
 
     async componentDidMount() {
         let { language } = this.props;
-
-        console.log('vi ', moment(new Date()).format('dddd - DD/MM'));
-        console.log('en ', moment(new Date()).locale('en').format('ddd - DD/MM'));
-
-        this.setWeekDays(language);
+        await this.getWeekDays(language);
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    async componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.language !== this.props.language) {
-            this.setWeekDays(this.props.language);
+            await this.getWeekDays(this.props.language);
+        }
+
+        if (this.props.doctorIdFromDetails !== prevProps.doctorIdFromDetails) {
+            console.log(this.state.days);
+
+            let res = await getDoctorSchedulesByDateService(this.props.doctorIdFromDetails, this.state.days[0].value);
+            if (res && res.errorCode === 0) {
+                this.setState({
+                    schedules: res.data ? res.data : []
+                })
+            }
         }
     }
 
@@ -36,7 +43,7 @@ class DoctorSchedules extends Component {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    setWeekDays = async (language) => {
+    getWeekDays = async (language) => {
         let weekDays = [];
         for (let i = 0; i < 7; i++) {
             let day = {}
@@ -53,7 +60,7 @@ class DoctorSchedules extends Component {
         }
 
         this.setState({
-            days: weekDays,
+            days: weekDays
         })
     }
 
@@ -95,7 +102,14 @@ class DoctorSchedules extends Component {
                 </div>
                 <div className='available-time'>
                     <div className='text-schedule'>
-                        <span><i className='fas fa-calendar-alt'>Lịch khám</i></span>
+                        <span>
+                            <i className='fas fa-calendar-alt'>
+                                <FormattedMessage id="patient.doctor-details.schedules"> </FormattedMessage>
+                            </i>
+                            <div className='help-text'>
+                                <FormattedMessage id="patient.doctor-details.select-time-slot">  </FormattedMessage>
+                            </div>
+                        </span>
                     </div>
                     <div className='schedule-content'>
                         {schedules && schedules.length > 0 ?
@@ -103,13 +117,18 @@ class DoctorSchedules extends Component {
                                 let scheduleDisplay = language === LANGUAGES.VI ?
                                     item.timeTypeData.valueVi : item.timeTypeData.valueEn
                                 return (
-                                    <button key={index}>{scheduleDisplay}</button>
+                                    <button key={index} className={language === LANGUAGES.VI ? 'btn-vi' : 'btn-en'}>
+                                        {scheduleDisplay}
+                                    </button>
                                 )
                             })
                             :
-                            <div>Khong co lich hen trong hom nay</div>
+                            <div className='no-schedules'>
+                                <FormattedMessage id="patient.doctor-details.no-schedules"></FormattedMessage>
+                            </div>
                         }
                     </div>
+
                 </div>
             </div>
         );

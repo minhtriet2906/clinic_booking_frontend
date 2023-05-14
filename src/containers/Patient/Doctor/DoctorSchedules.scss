@@ -22,8 +22,13 @@
       color: #333;
 
       span {
-        text-transform: uppercase;
         margin-left: 5px;
+        text-transform: uppercase;
+
+        .help-text {
+          text-transform: initial;
+          color: red;
+        }
       }
     }
 
@@ -45,6 +50,19 @@
           background-color: red;
           color: white;
         }
+      }
+
+      .btn-vi {
+        min-width: 120px;
+      }
+
+      .btn-en {
+        min-width: 170px;
+      }
+
+      .no-schedules {
+        font-style: italic;
+        font-weight: 600;
       }
     }
   }

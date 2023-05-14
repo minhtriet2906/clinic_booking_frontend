@@ -91,6 +91,14 @@
     "save": "Lưu thông tin"
   },
 
+  "patient": {
+    "doctor-details": {
+      "schedules": " Lịch khám bệnh",
+      "no-schedules": "Không có lịch khám trong ngày này",
+      "select-time-slot": " (Chọn thời gian bạn muốn khám bên dưới)"
+    }
+  },
+
   "homepage": {
     "more-info": "XEM THÊM",
     "top-doctor": "Bác sĩ nổi bật"

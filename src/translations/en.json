@@ -92,6 +92,14 @@
     "save": "Save"
   },
 
+  "patient": {
+    "doctor-details": {
+      "schedules": " Medical Examination Schedules",
+      "no-schedules": "There are no schedules for this day",
+      "select-time-slot": " (Select the available time slots below)"
+    }
+  },
+
   "homepage": {
     "more-info": "MORE INFO",
     "top-doctor": "Top doctors"
