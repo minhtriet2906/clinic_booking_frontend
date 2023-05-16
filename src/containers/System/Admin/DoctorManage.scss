@@ -1,5 +1,5 @@
 .doctor-manage-container {
-  padding: 5px;
+  padding: 10px;
   .doctor-manage-title {
     text-align: center;
     margin: 15px 0;
@@ -37,5 +37,13 @@
     .content-right {
       width: 60%;
     }
+  }
+
+  .doctor-price {
+    display: flex;
+  }
+
+  .doctor-clinic {
+    display: flex;
   }
 }
