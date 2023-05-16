@@ -81,14 +81,19 @@ class DoctorManage extends Component {
         console.log('handleEditorChange', html, text);
     }
 
-    handleSaveMarkdownContent = () => {
+    handleSaveDoctorInfo = () => {
         console.log('save', this.state);
         let doctorInfo = {
             contentHTML: this.state.contentHTML,
             contentMarkdown: this.state.contentMarkdown,
             description: this.state.description,
-            doctorId: this.state.selectedDoctor.value
+            doctorId: this.state.selectedDoctor.value,
+            selectedPrice: this.state.selectedPrice ? this.state.selectedPrice.value : null,
+            selectedPayment: this.state.selectedPayment ? this.state.selectedPayment.value : null,
+            selectedProvince: this.state.selectedProvince ? this.state.selectedProvince.value : null,
         }
+
+        console.log('save', doctorInfo);
         this.props.saveDoctorInfo(doctorInfo);
     }
 
@@ -114,22 +119,14 @@ class DoctorManage extends Component {
         console.log('doctor ', selectedDoctor.value);
     }
 
-    handleSelectBookingPrices = async (selectedPrice) => {
-        console.log(selectedPrice);
-        await this.setState({ selectedPrice })
-        console.log(this.state.selectedPrice);
-    }
+    handleSelectOption = async (selectedOption, name) => {
+        let copyState = { ...this.state };
+        let selectedType = name.name
+        copyState[selectedType] = selectedOption;
 
-    handleSelectPaymentMethod = async (selectedPayment) => {
-        console.log(selectedPayment);
-        await this.setState({ selectedPayment })
-        console.log(this.state.selectedPayment);
-    }
-
-    handleSelectProvince = async (selectedProvince) => {
-        console.log(selectedProvince);
-        await this.setState({ selectedProvince })
-        console.log(this.state.selectedProvince);
+        await this.setState({
+            ...copyState
+        })
     }
 
     handleChangeDescription = (event) => {
@@ -204,19 +201,21 @@ class DoctorManage extends Component {
                     <div className="col-4 price">
                         <label><FormattedMessage id="admin.manage-doctor-infor.price"></FormattedMessage></label>
                         <Select
-                            onChange={this.handleSelectBookingPrices}
+                            onChange={this.handleSelectOption}
                             options={this.state.bookingPrices}
                             value={this.state.selectedPrice}
                             placeholder="Choose booking price"
+                            name='selectedPrice'
                         />
                     </div>
                     <div className="col-4 payment">
                         <label><FormattedMessage id="admin.manage-doctor-infor.payment"></FormattedMessage></label>
                         <Select
-                            onChange={this.handleSelectPaymentMethod}
+                            onChange={this.handleSelectOption}
                             options={this.state.paymentMethods}
                             value={this.state.selectedPayment}
                             placeholder="Select payment"
+                            name='selectedPayment'
                         />
                     </div>
                     <div className="col-4 note">
@@ -236,10 +235,11 @@ class DoctorManage extends Component {
                     <div className='col-4 province'>
                         <label><FormattedMessage id="admin.manage-doctor-infor.province"></FormattedMessage></label>
                         <Select
-                            onChange={this.handleSelectProvince}
+                            onChange={this.handleSelectOption}
                             options={this.state.provinces}
                             value={this.state.selectedProvince}
                             placeholder="Select province"
+                            name='selectedProvince'
                         />
                     </div>
                 </div>
@@ -256,7 +256,7 @@ class DoctorManage extends Component {
                 </div>
                 <button
                     className='save-doctor-content'
-                    onClick={() => this.handleSaveMarkdownContent()}>
+                    onClick={() => this.handleSaveDoctorInfo()}>
                     Save info
                 </button>
             </div>
