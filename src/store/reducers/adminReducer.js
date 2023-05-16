@@ -9,6 +9,9 @@ const initialState = {
     users: [],
     doctors: [],
     timeSlots: [],
+    bookingPrices: [],
+    paymentMethods: [],
+    provinces: [],
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -121,6 +124,51 @@ const adminReducer = (state = initialState, action) => {
 
         case actionTypes.FETCH_SCHEDULE_TIME_FAIL:
             copyState.timeSlots = [];
+
+            return {
+                ...copyState,
+            }
+
+        //BOOKING_PRICE
+        case actionTypes.FETCH_BOOKING_PRICE_SUCCESS:
+            copyState.bookingPrices = action.bookingPrices;
+            return {
+                ...copyState,
+            }
+
+        case actionTypes.FETCH_BOOKING_PRICE_FAIL:
+            copyState.bookingPrices = [];
+
+            return {
+                ...copyState,
+            }
+
+
+        //PAYMENT_METHOD
+        case actionTypes.FETCH_PAYMENT_METHOD_SUCCESS:
+            copyState.paymentMethods = action.paymentMethods;
+
+            return {
+                ...copyState,
+            }
+
+        case actionTypes.FETCH_PAYMENT_METHOD_FAIL:
+            copyState.paymentMethods = [];
+
+            return {
+                ...copyState,
+            }
+
+        //PROVINCES
+        case actionTypes.FETCH_PROVINCES_SUCCESS:
+            copyState.provinces = action.provinces;
+
+            return {
+                ...copyState,
+            }
+
+        case actionTypes.FETCH_PROVINCES_FAIL:
+            copyState.provinces = [];
 
             return {
                 ...copyState,

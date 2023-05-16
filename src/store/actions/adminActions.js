@@ -243,7 +243,7 @@ export const fetchAllUsersFail = () => ({
 })
 
 
-// fetch doctors
+// fetch top doctors
 export const fetchTopDoctorsStart = () => {
     return async (dispatch, getState) => {
         try {
@@ -313,6 +313,88 @@ export const fetchScheduletimeSuccess = (data) => ({
 
 export const fetchScheduletimeFail = () => ({
     type: actionTypes.FETCH_SCHEDULE_TIME_FAIL,
+})
+
+// fetch booking prices
+export const fetchBookingPrices = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllCodeService('PRICE');
+            if (res && res.errorCode === 0) {
+                dispatch(fetchBookingPricesSuccess(res.data));
+            }
+            else {
+                dispatch(fetchBookingPricesFail());
+            }
+        } catch (error) {
+            dispatch(fetchBookingPricesFail());
+            console.log(error);
+        }
+    }
+}
+
+export const fetchBookingPricesSuccess = (data) => ({
+    type: actionTypes.FETCH_BOOKING_PRICE_SUCCESS,
+    bookingPrices: data
+})
+
+export const fetchBookingPricesFail = () => ({
+    type: actionTypes.FETCH_BOOKING_PRICE_FAIL,
+})
+
+// fetch payment methods
+export const fetchPaymentMethods = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllCodeService('PAYMENT');
+            if (res && res.errorCode === 0) {
+                dispatch(fetchPaymentMethodsSuccess(res.data));
+            }
+            else {
+                dispatch(fetchPaymentMethodsFail());
+            }
+        } catch (error) {
+            dispatch(fetchPaymentMethodsFail());
+            console.log(error);
+        }
+    }
+}
+
+export const fetchPaymentMethodsSuccess = (data) => ({
+    type: actionTypes.FETCH_PAYMENT_METHOD_SUCCESS,
+    paymentMethods: data
+})
+
+export const fetchPaymentMethodsFail = () => ({
+    type: actionTypes.FETCH_PAYMENT_METHOD_FAIL,
+})
+
+
+// fetch payment methods
+export const fetchProvinces = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllCodeService('PROVINCE');
+            if (res && res.errorCode === 0) {
+                dispatch(fetchProvinceSuccess(res.data));
+            }
+            else {
+                dispatch(fetchProvinceFail());
+            }
+        } catch (error) {
+            dispatch(fetchProvinceFail());
+            console.log(error);
+        }
+    }
+}
+
+export const fetchProvinceSuccess = (data) => ({
+    type: actionTypes.FETCH_PROVINCES_SUCCESS,
+    provinces: data
+})
+
+export const fetchProvinceFail = () => ({
+    type: actionTypes.FETCH_PROVINCES_FAIL,
 })
 
 
