@@ -100,6 +100,21 @@
     }
   },
 
+  "admin": {
+    "manage-doctor-infor": {
+      "title": "Doctor's Infor Management",
+      "choose-doctor": "Choose doctor",
+      "introduction": "Introduction",
+      "detail-infor": "Detailed Information",
+      "price": "Booking Price",
+      "payment": "Payment Method",
+      "province": "Province",
+      "clinic-name": "Clinic Name",
+      "clinic-address": "Clinic Address",
+      "note": "Note"
+    }
+  },
+
   "homepage": {
     "more-info": "MORE INFO",
     "top-doctor": "Top doctors"

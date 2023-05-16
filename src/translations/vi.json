@@ -99,6 +99,21 @@
     }
   },
 
+  "admin": {
+    "manage-doctor-infor": {
+      "title": "Quản lý thông tin bác sĩ",
+      "choose-doctor": "Chọn bác sĩ",
+      "introduction": "Giới thiệu",
+      "detail-infor": "Thông tin chi tiết",
+      "price": "Giá khám bệnh",
+      "payment": "Phương thức thanh toán",
+      "province": "Tỉnh thành",
+      "clinic-name": "Tên phòng khám",
+      "clinic-address": "Địa chỉ phòng khám",
+      "note": "Ghi chú"
+    }
+  },
+
   "homepage": {
     "more-info": "XEM THÊM",
     "top-doctor": "Bác sĩ nổi bật"
