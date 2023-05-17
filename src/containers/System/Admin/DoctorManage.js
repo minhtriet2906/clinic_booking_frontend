@@ -277,10 +277,10 @@ class DoctorManage extends Component {
                     </div>
                     <div className="col-4 note">
                         <label><FormattedMessage id="admin.manage-doctor-infor.note"></FormattedMessage></label>
-                        <input className='form-control'
+                        <textarea className='form-control' rows='4'
                             onChange={(event) => this.handleChangeNote(event)}
                             defaultValue={this.state.note}>
-                        </input>
+                        </textarea>
                     </div>
                 </div>
                 <div className='doctor-clinic'>
