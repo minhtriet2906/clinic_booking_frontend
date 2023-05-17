@@ -1,0 +1,71 @@
+.doctor-booking-info-container {
+  padding-left: 10px;
+
+  .clinic-info {
+    margin-bottom: 10px;
+
+    .address-text {
+      text-transform: uppercase;
+      color: #333;
+    }
+
+    .clinic-name {
+      padding: 5px 0;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .clinic-address {
+      font-weight: 600;
+      color: #333;
+    }
+  }
+
+  .booking-info {
+    .short-info {
+      .btn-detail {
+        cursor: pointer;
+        color: rgb(38, 169, 231);
+      }
+    }
+
+    .currency {
+      margin: 0 5px;
+    }
+    .price-title {
+      margin-bottom: 10px;
+    }
+
+    .detail-info {
+      border: 1px solid #ddd;
+      padding: 5px;
+      background-color: #f8f8f8;
+
+      .price {
+        padding-bottom: 5px;
+
+        .right {
+          float: right;
+        }
+
+        .note {
+        }
+      }
+
+      .payment {
+        border: 1px solid #ddd;
+        padding: 5px;
+        background-color: #eee;
+      }
+    }
+
+    .hide-detail {
+      margin-top: 10px;
+
+      span {
+        cursor: pointer;
+        color: rgb(38, 169, 231);
+      }
+    }
+  }
+}
