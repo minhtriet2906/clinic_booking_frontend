@@ -29,12 +29,17 @@ class DoctorManage extends Component {
 
             bookingPrices: [],
             selectedPrice: null,
+            priceLabel: '',
 
             paymentMethods: [],
             selectedPayment: null,
+            paymentLabel: '',
 
             provinces: [],
             selectedProvince: null,
+            provinceLabel: '',
+
+            note: '',
         }
     }
 
@@ -91,6 +96,8 @@ class DoctorManage extends Component {
             selectedPrice: this.state.selectedPrice ? this.state.selectedPrice.value : null,
             selectedPayment: this.state.selectedPayment ? this.state.selectedPayment.value : null,
             selectedProvince: this.state.selectedProvince ? this.state.selectedProvince.value : null,
+            note: this.state.note,
+
         }
 
         console.log('save', doctorInfo);
@@ -101,21 +108,64 @@ class DoctorManage extends Component {
         this.setState({ selectedDoctor })
 
         let res = await getDoctorDetailsService(selectedDoctor.value);
-        if (res && res.errorCode === 0 && res.data && res.data.Markdown) {
-            let markdown = res.data.Markdown;
-            this.setState({
-                contentHTML: markdown.contentHTML,
-                contentMarkdown: markdown.contentMarkdown,
-                description: markdown.description
-            })
+
+        if (res && res.errorCode === 0 && res.data) {
+            if (res.data.Markdown) {
+                let markdown = res.data.Markdown;
+                this.setState({
+                    contentHTML: markdown.contentHTML,
+                    contentMarkdown: markdown.contentMarkdown,
+                    description: markdown.description
+                })
+            }
+            else {
+                this.setState({
+                    contentHTML: '',
+                    contentMarkdown: '',
+                    description: ''
+                })
+            }
+
+            if (res.data.Doctor_Infor) {
+                let doctorInfor = res.data.Doctor_Infor;
+                this.setState({
+                    selectedPrice: doctorInfor.price,
+                    selectedPayment: doctorInfor.payment,
+                    selectedProvince: doctorInfor.province,
+                    note: doctorInfor.note,
+                })
+
+                let priceData = this.state.bookingPrices.find(item => {
+                    return item && item.value === this.state.selectedPrice;
+                })
+
+                let paymentData = this.state.paymentMethods.find(item => {
+                    return item && item.value === this.state.selectedPayment;
+                })
+
+                let provinceData = this.state.provinces.find(item => {
+                    return item && item.value === this.state.selectedProvince;
+                })
+
+                if (priceData && paymentData && provinceData) {
+                    this.setState({
+                        priceLabel: priceData.label,
+                        paymentLabel: paymentData.label,
+                        provinceLabel: provinceData.label,
+                    })
+                }
+            }
+            else {
+                this.setState({
+                    selectedPrice: null,
+                    selectedPayment: null,
+                    selectedProvince: null,
+                    note: '',
+                })
+            }
         }
-        else {
-            this.setState({
-                contentHTML: '',
-                contentMarkdown: '',
-                description: ''
-            })
-        }
+
+
         console.log('doctor ', selectedDoctor.value);
     }
 
@@ -134,6 +184,13 @@ class DoctorManage extends Component {
             description: event.target.value
         })
     }
+
+    handleChangeNote = (event) => {
+        this.setState({
+            note: event.target.value
+        })
+    }
+
 
     createDoctorsListOptions = (data) => {
         let doctorOptions = [];
@@ -204,7 +261,7 @@ class DoctorManage extends Component {
                             onChange={this.handleSelectOption}
                             options={this.state.bookingPrices}
                             value={this.state.selectedPrice}
-                            placeholder="Choose booking price"
+                            placeholder={this.state.priceLabel ? this.state.priceLabel : 'Select Price'}
                             name='selectedPrice'
                         />
                     </div>
@@ -214,13 +271,16 @@ class DoctorManage extends Component {
                             onChange={this.handleSelectOption}
                             options={this.state.paymentMethods}
                             value={this.state.selectedPayment}
-                            placeholder="Select payment"
+                            placeholder={this.state.paymentLabel ? this.state.paymentLabel : 'Select Payment Method'}
                             name='selectedPayment'
                         />
                     </div>
                     <div className="col-4 note">
                         <label><FormattedMessage id="admin.manage-doctor-infor.note"></FormattedMessage></label>
-                        <input className='form-control'></input>
+                        <input className='form-control'
+                            onChange={(event) => this.handleChangeNote(event)}
+                            defaultValue={this.state.note}>
+                        </input>
                     </div>
                 </div>
                 <div className='doctor-clinic'>
@@ -238,7 +298,7 @@ class DoctorManage extends Component {
                             onChange={this.handleSelectOption}
                             options={this.state.provinces}
                             value={this.state.selectedProvince}
-                            placeholder="Select province"
+                            placeholder={this.state.provinceLabel ? this.state.provinceLabel : 'Select Province'}
                             name='selectedProvince'
                         />
                     </div>
