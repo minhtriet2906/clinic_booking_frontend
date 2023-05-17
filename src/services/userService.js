@@ -54,6 +54,11 @@ const getDoctorSchedulesByDateService = (doctorId, formattedDate) => {
 
 }
 
+const getDoctorBookingInfoService = (doctorId) => {
+    return axios.get(`/api/get-doctor-booking-info?doctorId=${doctorId}`);
+
+}
+
 export {
     handleLogin,
     getAllUsers,
@@ -66,5 +71,6 @@ export {
     saveDoctorInfoService,
     getDoctorDetailsService,
     saveBulkScheduleService,
-    getDoctorSchedulesByDateService
+    getDoctorSchedulesByDateService,
+    getDoctorBookingInfoService
 }
