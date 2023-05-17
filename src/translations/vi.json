@@ -96,6 +96,14 @@
       "schedules": " Lịch khám bệnh",
       "no-schedules": "Không có lịch khám trong ngày này",
       "select-time-slot": " (Chọn thời gian bạn muốn khám bên dưới)"
+    },
+    "booking-info": {
+      "price-title": "GIÁ KHÁM: ",
+      "price": "Giá khám: ",
+      "address-title": "ĐỊA CHỈ KHÁM: ",
+      "show-detail-button": "Xem chi tiết",
+      "hide-detail-button": "Ẩn bảng giá",
+      "payment-method": "Người bệnh có thể thanh toán chi phí bằng hình thức: "
     }
   },
 

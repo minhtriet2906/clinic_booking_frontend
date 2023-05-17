@@ -97,6 +97,14 @@
       "schedules": " Medical Examination Schedules",
       "no-schedules": "There are no schedules for this day",
       "select-time-slot": " (Select the available time slots below)"
+    },
+    "booking-info": {
+      "price-title": "BOOKING PRICE: ",
+      "price": "Booking Price: ",
+      "address-title": "ADDRESS: ",
+      "show-detail-button": "More details",
+      "hide-detail-button": "Hide details",
+      "payment-method": "Patients can pay in: "
     }
   },
 
