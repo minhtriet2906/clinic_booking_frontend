@@ -46,6 +46,7 @@ class DoctorBookingInfo extends Component {
         let { isShowBookingDetailInfo, doctorBookingInfo } = this.state;
         let clinicName = doctorBookingInfo.clinicData ? doctorBookingInfo.clinicData.name : '';
         let clinicAddress = doctorBookingInfo.clinicData ? doctorBookingInfo.clinicData.address : '';
+        console.log(doctorBookingInfo);
 
         return (
             <div className='doctor-booking-info-container'>
@@ -61,7 +62,7 @@ class DoctorBookingInfo extends Component {
                             {doctorBookingInfo && doctorBookingInfo.priceData &&
                                 < NumberFormat
                                     className='currency'
-                                    value={doctorBookingInfo.priceData.valueVi}
+                                    value={doctorBookingInfo.priceData.valueVi ? doctorBookingInfo.priceData.valueVi : ''}
                                     displayType='text'
                                     thousandSeparator={true}
                                     suffix='đ'>
@@ -84,7 +85,7 @@ class DoctorBookingInfo extends Component {
                                         {doctorBookingInfo && doctorBookingInfo.priceData &&
                                             < NumberFormat
                                                 className='currency'
-                                                value={doctorBookingInfo.priceData.valueVi}
+                                                value={doctorBookingInfo.priceData.valueVi ? doctorBookingInfo.priceData.valueVi : ''}
                                                 displayType='text'
                                                 thousandSeparator={true}
                                                 suffix='đ'>
@@ -97,7 +98,7 @@ class DoctorBookingInfo extends Component {
                                         {doctorBookingInfo && doctorBookingInfo.priceData &&
                                             < NumberFormat
                                                 className='currency'
-                                                value={doctorBookingInfo.priceData.valueEn}
+                                                value={doctorBookingInfo.priceData.valueEn ? doctorBookingInfo.priceData.valueEn : ''}
                                                 displayType='text'
                                                 thousandSeparator={true}
                                                 suffix='$'>
@@ -106,8 +107,16 @@ class DoctorBookingInfo extends Component {
                                     </div>
                                     <div className='payment'>
                                         <FormattedMessage id="patient.booking-info.payment-method"></FormattedMessage>
-                                        {doctorBookingInfo && doctorBookingInfo.paymentData && language === LANGUAGES.VI ?
-                                            doctorBookingInfo.paymentData.valueVi : doctorBookingInfo.paymentData.valueEn}
+                                        {doctorBookingInfo.paymentData ? //check paymentData
+                                            language === LANGUAGES.VI ? // check language
+                                                doctorBookingInfo.paymentData.valueVi ? //check paymentData.valueVi
+                                                    doctorBookingInfo.paymentData.valueVi : ''
+                                                :
+                                                doctorBookingInfo.paymentData.valueEn ? //check paymentData.valueVi
+                                                    doctorBookingInfo.paymentData.valueEn : ''
+                                            :
+                                            ''
+                                        }
                                     </div>
                                 </div>
                             </div>
