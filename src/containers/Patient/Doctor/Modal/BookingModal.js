@@ -4,6 +4,7 @@ import './BookingModal.scss'
 import { FormattedMessage } from 'react-intl';
 import { Modal } from 'reactstrap';
 import DoctorProfile from '../DoctorProfile';
+import { times } from 'lodash';
 
 class BookingModal extends Component {
 
@@ -25,6 +26,7 @@ class BookingModal extends Component {
 
     render() {
         let { isOpenBookingModal, closeBookingModal, bookingTime } = this.props;
+        console.log('time', bookingTime);
         return (
             <Modal isOpen={isOpenBookingModal}
                 className='booking-modal-container'
@@ -41,7 +43,9 @@ class BookingModal extends Component {
                     <div className='booking-modal-body'>
                         <div className='doctor-info'>
                             <DoctorProfile
-                                doctorId={this.props.doctorId}>
+                                doctorId={this.props.doctorId}
+                                isShowDoctorDescription={false}
+                                bookingTime={bookingTime}>
                             </DoctorProfile>
                         </div>
                         <div className='row'>

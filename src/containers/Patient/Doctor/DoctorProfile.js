@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { getDoctorProfileService } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
 import NumberFormat from 'react-number-format';
+import moment from 'moment';
 
 class DoctorProfile extends Component {
 
@@ -43,10 +44,44 @@ class DoctorProfile extends Component {
         return profileInfo;
     }
 
+    capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    renderBookingTime = (bookingTime, language) => {
+        let day = {};
+        let timeVi = '', timeEn = ''
+
+        if (bookingTime && bookingTime.timeTypeData) {
+            timeVi = `${bookingTime.timeTypeData.valueVi} `;
+            timeEn = `${bookingTime.timeTypeData.valueEn}`;
+        }
+
+        if (bookingTime.date) {
+            if (language === LANGUAGES.VI) {
+                day.label = moment(bookingTime.date).format('dddd - DD/MM');
+                day.label = this.capitalizeFirstLetter(day.label);
+            }
+            else {
+                day.label = moment(bookingTime.date).locale('en').format('dddd - DD/MM');
+
+            }
+            day.value = moment(bookingTime.date);
+        }
+
+        return (
+            <>
+                {language === LANGUAGES.VI ? timeVi : timeEn}
+                {` - `}
+                {day.label}
+            </>
+        )
+    }
+
     render() {
         console.log(this.state.doctorProfile);
         let { doctorProfile } = this.state;
-        let { language } = this.props;
+        let { language, isShowDoctorDescription, bookingTime } = this.props;
 
         let nameVi = '', nameEn = '';
 
@@ -67,10 +102,18 @@ class DoctorProfile extends Component {
                             {language === LANGUAGES.VI ? nameVi : nameEn}
                         </div>
                         <div className='doctor-summary'>
-                            {doctorProfile && doctorProfile.Markdown && doctorProfile.Markdown.description
-                                && <span>
-                                    {doctorProfile.Markdown.description}
-                                </span>}
+                            {isShowDoctorDescription === true ?
+                                <>
+                                    {doctorProfile && doctorProfile.Markdown && doctorProfile.Markdown.description
+                                        && <span>
+                                            {doctorProfile.Markdown.description}
+                                        </span>}
+                                </>
+                                :
+                                <>
+                                    {this.renderBookingTime(bookingTime, language)}
+                                </>
+                            }
                         </div>
                     </div>
                 </div>

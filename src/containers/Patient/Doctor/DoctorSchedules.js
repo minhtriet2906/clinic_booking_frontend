@@ -85,13 +85,11 @@ class DoctorSchedules extends Component {
         }
     }
 
-    handleSelectSchedule = (time) => {
+    handleSelectSchedule = (timeSlot) => {
         this.setState({
             isOpenBookingModal: true,
-            dataBookingTimeModal: time
+            dataBookingTimeModal: timeSlot
         })
-
-        console.log('time slot', time);
     }
 
     handleClosebookingModal = () => {
@@ -103,6 +101,7 @@ class DoctorSchedules extends Component {
     render() {
         let { days, schedules, isOpenBookingModal, dataBookingTimeModal } = this.state;
         let { language } = this.props;
+        console.log(dataBookingTimeModal);
         return (
             <>
                 <div className='doctor-schedules-container'>
@@ -136,7 +135,7 @@ class DoctorSchedules extends Component {
                                     let scheduleDisplay = language === LANGUAGES.VI ?
                                         item.timeTypeData.valueVi : item.timeTypeData.valueEn
                                     return (
-                                        <button key={index} className={language === LANGUAGES.VI ? 'btn-vi' : 'btn-en'} onClick={this.handleSelectSchedule}>
+                                        <button key={index} className={language === LANGUAGES.VI ? 'btn-vi' : 'btn-en'} onClick={() => this.handleSelectSchedule(item)}>
                                             {scheduleDisplay}
                                         </button>
                                     )
