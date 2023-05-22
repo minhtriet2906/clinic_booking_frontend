@@ -46,7 +46,6 @@ class DoctorBookingInfo extends Component {
         let { isShowBookingDetailInfo, doctorBookingInfo } = this.state;
         let clinicName = doctorBookingInfo.clinicData ? doctorBookingInfo.clinicData.name : '';
         let clinicAddress = doctorBookingInfo.clinicData ? doctorBookingInfo.clinicData.address : '';
-        console.log(doctorBookingInfo);
 
         return (
             <div className='doctor-booking-info-container'>
