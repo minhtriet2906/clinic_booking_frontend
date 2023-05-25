@@ -64,6 +64,10 @@ const getDoctorProfileService = (doctorId) => {
 
 }
 
+const getAllClinicsService = () => {
+    return axios.get(`/api/get-all-clinics`);
+}
+
 export {
     handleLogin,
     getAllUsers,
@@ -71,6 +75,7 @@ export {
     deleteUserService,
     editUserService,
     getAllCodeService,
+
     getTopDoctorsService,
     getAllDoctorsService,
     saveDoctorInfoService,
@@ -78,5 +83,7 @@ export {
     saveBulkScheduleService,
     getDoctorSchedulesByDateService,
     getDoctorBookingInfoService,
-    getDoctorProfileService
+    getDoctorProfileService,
+
+    getAllClinicsService
 }
