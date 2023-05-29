@@ -68,6 +68,11 @@ const getAllClinicsService = () => {
     return axios.get(`/api/get-all-clinics`);
 }
 
+
+const saveBookingAppointmentService = (data) => {
+    return axios.post(`/api/book-appointment`, data);
+}
+
 export {
     handleLogin,
     getAllUsers,
@@ -85,5 +90,7 @@ export {
     getDoctorBookingInfoService,
     getDoctorProfileService,
 
-    getAllClinicsService
+    getAllClinicsService,
+
+    saveBookingAppointmentService,
 }
