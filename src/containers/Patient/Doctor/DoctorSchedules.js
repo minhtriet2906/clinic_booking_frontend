@@ -101,7 +101,6 @@ class DoctorSchedules extends Component {
     render() {
         let { days, schedules, isOpenBookingModal, dataBookingTimeModal } = this.state;
         let { language } = this.props;
-        console.log(dataBookingTimeModal);
         return (
             <>
                 <div className='doctor-schedules-container'>
