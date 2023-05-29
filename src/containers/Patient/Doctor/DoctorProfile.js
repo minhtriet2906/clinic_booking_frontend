@@ -49,7 +49,7 @@ class DoctorProfile extends Component {
     }
 
     renderBookingTime = (bookingTime, language) => {
-        let day = {};
+        let date = {};
         let timeVi = '', timeEn = ''
 
         if (bookingTime && bookingTime.timeTypeData) {
@@ -59,21 +59,21 @@ class DoctorProfile extends Component {
 
         if (bookingTime.date) {
             if (language === LANGUAGES.VI) {
-                day.label = moment(bookingTime.date).format('dddd - DD/MM');
-                day.label = this.capitalizeFirstLetter(day.label);
+                date.label = moment(bookingTime.date).format('dddd - DD/MM');
+                date.label = this.capitalizeFirstLetter(date.label);
             }
             else {
-                day.label = moment(bookingTime.date).locale('en').format('dddd - DD/MM');
+                date.label = moment(bookingTime.date).locale('en').format('dddd - DD/MM');
 
             }
-            day.value = moment(bookingTime.date);
+            date.value = moment(bookingTime.date);
         }
 
         return (
             <>
                 {language === LANGUAGES.VI ? timeVi : timeEn}
                 {` - `}
-                {day.label}
+                {date.label}
             </>
         )
     }
