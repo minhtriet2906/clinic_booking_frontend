@@ -105,6 +105,19 @@
       "show-detail-button": "More details",
       "hide-detail-button": "Hide details",
       "payment-method": "Patients can pay in: "
+    },
+    "booking-modal": {
+      "title": "Booking Infomation",
+      "first-name": "First Name",
+      "last-name": "Last Name",
+      "address": "Address",
+      "phonenumber": "Phone",
+      "email": "Email",
+      "reason": "Reason for medical appointment",
+      "birthday": "Birthday",
+      "gender": "Gender",
+      "confirm": "Confirm",
+      "cancel": "Cancel"
     }
   },
 
