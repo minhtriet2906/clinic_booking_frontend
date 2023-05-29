@@ -10,6 +10,8 @@ import * as actions from "../../../../store/actions"
 import _ from 'lodash';
 import { saveBookingAppointmentService } from '../../../../services/userService';
 import { toast } from 'react-toastify';
+import moment from 'moment';
+
 
 
 class BookingModal extends Component {
@@ -74,7 +76,9 @@ class BookingModal extends Component {
 
     handleConfirmBooking = async () => {
         console.log('save booking info ', this.state);
-
+        let timeString = this.getBookingTime(this.props.bookingTime);
+        let doctorName = this.getDoctorName(this.props.bookingTime);
+        console.log(doctorName);
         //validate input
         if (!this.validateInput()) {
             return;
@@ -91,7 +95,10 @@ class BookingModal extends Component {
             gender: this.state.gender,
             doctorId: this.state.doctorId,
             timeType: this.props.bookingTime.timeType,
-            date: this.props.bookingTime.date
+            date: this.props.bookingTime.date,
+            timeString: timeString,
+            doctorName: doctorName,
+            language: this.props.language,
         })
 
         if (res && res.errorCode === 0) {
@@ -119,13 +126,50 @@ class BookingModal extends Component {
         return isValid;
     }
 
+    capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    getBookingTime = (bookingTime) => {
+        let language = this.props.language;
+        let date = {};
+        let timeVi = '', timeEn = '';
+
+        if (bookingTime && bookingTime.timeTypeData) {
+            timeVi = `${bookingTime.timeTypeData.valueVi} `;
+            timeEn = `${bookingTime.timeTypeData.valueEn}`;
+        }
+
+        if (bookingTime.date) {
+            if (language === LANGUAGES.VI) {
+                date.label = moment(bookingTime.date).format('dddd - DD/MM/YYYY');
+                date.label = this.capitalizeFirstLetter(date.label);
+            }
+            else {
+                date.label = moment(bookingTime.date).locale('en').format('dddd - DD/MM/YYYY');
+
+            }
+            return ` ${language === LANGUAGES.VI ? timeVi : timeEn} - ${date.label}`
+        }
+        return '';
+    }
+
+    getDoctorName = (bookingTime) => {
+        let { language } = this.props;
+        if (bookingTime) {
+            let name = language === LANGUAGES.VI ?
+                `${bookingTime.doctorData.lastName} ${bookingTime.doctorData.firstName}`
+                :
+                `${bookingTime.doctorData.firstName} ${bookingTime.doctorData.lastName}`
+
+            return name;
+        }
+        return '';
+    }
+
     render() {
         let { isOpenBookingModal, closeBookingModal, bookingTime } = this.props;
         let gendersList = this.state.genders;
-
-        console.log('time', bookingTime);
-        console.log('state', this.state);
-        console.log('props', this.props);
 
         return (
             <Modal isOpen={isOpenBookingModal}
