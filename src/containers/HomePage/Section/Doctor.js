@@ -31,7 +31,7 @@ class Doctor extends Component {
     handleViewDoctorDetails = (doctor) => {
         console.log('doctor ', doctor);
         if (this.props.history) {
-            this.props.history.push(`/users/${doctor.id}`)
+            this.props.history.push(`/doctor-details/${doctor.id}`)
         }
     }
 
