@@ -73,6 +73,10 @@ const saveBookingAppointmentService = (data) => {
     return axios.post(`/api/book-appointment`, data);
 }
 
+const verifyBookingAppointmentService = (data) => {
+    return axios.post(`/api/verify-book-appointment`, data);
+}
+
 export {
     handleLogin,
     getAllUsers,
@@ -93,4 +97,5 @@ export {
     getAllClinicsService,
 
     saveBookingAppointmentService,
+    verifyBookingAppointmentService,
 }
