@@ -42,7 +42,7 @@ const saveDoctorInfoService = (data) => {
 }
 
 const getDoctorDetailsService = (doctorId) => {
-    return axios.get(`/api/get-doctor-details?id=${doctorId}`);
+    return axios.get(`/api/get-doctor-details?doctorId=${doctorId}`);
 }
 
 const saveBulkScheduleService = (data) => {
@@ -68,6 +68,13 @@ const getAllClinicsService = () => {
     return axios.get(`/api/get-all-clinics`);
 }
 
+const saveClinicService = (data) => {
+    return axios.post(`/api/save-clinic`, data);
+}
+
+const getClinicDetailsService = (clinicId) => {
+    return axios.get(`/api/get-clinic-details?clinicId=${clinicId}`);
+}
 
 const saveBookingAppointmentService = (data) => {
     return axios.post(`/api/book-appointment`, data);
@@ -75,6 +82,18 @@ const saveBookingAppointmentService = (data) => {
 
 const verifyBookingAppointmentService = (data) => {
     return axios.post(`/api/verify-book-appointment`, data);
+}
+
+const saveMedicalSpecialtyService = (data) => {
+    return axios.post(`/api/save-medical-specialty`, data);
+}
+
+const getAllSpecialtiesService = () => {
+    return axios.get(`/api/get-all-specialties`);
+}
+
+const getSpecialtyDetailsService = (specialtyId) => {
+    return axios.get(`/api/get-specialty-details?specialtyId=${specialtyId}`);
 }
 
 export {
@@ -94,8 +113,14 @@ export {
     getDoctorBookingInfoService,
     getDoctorProfileService,
 
+    saveClinicService,
     getAllClinicsService,
+    getClinicDetailsService,
 
     saveBookingAppointmentService,
     verifyBookingAppointmentService,
+
+    saveMedicalSpecialtyService,
+    getAllSpecialtiesService,
+    getSpecialtyDetailsService
 }
