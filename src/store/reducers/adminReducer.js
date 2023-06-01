@@ -12,6 +12,8 @@ const initialState = {
     bookingPrices: [],
     paymentMethods: [],
     provinces: [],
+    clinics: [],
+    specialties: [],
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -173,6 +175,37 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...copyState,
             }
+
+        //CLINICS
+        case actionTypes.FETCH_CLINICS_SUCCESS:
+            copyState.clinics = action.clinics;
+
+            return {
+                ...copyState,
+            }
+
+        case actionTypes.FETCH_CLINICS_FAIL:
+            copyState.clinics = [];
+
+            return {
+                ...copyState,
+            }
+
+        //SPECIALTIES
+        case actionTypes.FETCH_SPECIALTIES_SUCCESS:
+            copyState.specialties = action.specialties;
+
+            return {
+                ...copyState,
+            }
+
+        case actionTypes.FETCH_SPECIALTIES_FAIL:
+            copyState.specialties = [];
+
+            return {
+                ...copyState,
+            }
+
 
         default:
             return state;

@@ -1,7 +1,8 @@
 import actionTypes from './actionTypes';
 import {
     getAllCodeService, createNewUserService, getAllUsers,
-    deleteUserService, editUserService, getTopDoctorsService, getAllDoctorsService, saveDoctorInfoService
+    deleteUserService, editUserService, getTopDoctorsService,
+    getAllDoctorsService, saveDoctorInfoService, getAllClinicsService, getAllSpecialtiesService
 } from '../../services/userService';
 import { toast } from 'react-toastify';
 
@@ -102,7 +103,7 @@ export const createNewUser = (userData) => {
                 dispatch(fetchAllUsersStart());
             }
             else {
-                toast.error('Error!');
+                toast.error(`Error! ${res.message}`);
                 dispatch(createUserFail());
             }
         } catch (error) {
@@ -167,7 +168,7 @@ export const editUser = (userData) => {
                 dispatch(fetchAllUsersStart());
             }
             else {
-                toast.error('Error!');
+                toast.error(`Error! ${res.message}`);
                 dispatch(editUserFail());
             }
         } catch (error) {
@@ -399,3 +400,54 @@ export const fetchProvinceFail = () => ({
 })
 
 
+export const fetchAllClinics = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllClinicsService();
+            if (res && res.errorCode === 0) {
+                dispatch(fetchAllClinicsSuccess(res.clinics));
+            }
+            else {
+                dispatch(fetchAllClinicsFail());
+            }
+        } catch (error) {
+            dispatch(fetchAllClinicsFail());
+            console.log(error);
+        }
+    }
+}
+
+export const fetchAllClinicsSuccess = (data) => ({
+    type: actionTypes.FETCH_CLINICS_SUCCESS,
+    clinics: data
+})
+
+export const fetchAllClinicsFail = () => ({
+    type: actionTypes.FETCH_CLINICS_FAIL,
+})
+
+export const fetchAllSpecialties = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllSpecialtiesService();
+            if (res && res.errorCode === 0) {
+                dispatch(fetchAllSpecialtiesSuccess(res.specialties));
+            }
+            else {
+                dispatch(fetchAllSpecialtiesFail());
+            }
+        } catch (error) {
+            dispatch(fetchAllSpecialtiesFail());
+            console.log(error);
+        }
+    }
+}
+
+export const fetchAllSpecialtiesSuccess = (data) => ({
+    type: actionTypes.FETCH_SPECIALTIES_SUCCESS,
+    specialties: data
+})
+
+export const fetchAllSpecialtiesFail = () => ({
+    type: actionTypes.FETCH_SPECIALTIES_FAIL,
+})
