@@ -23,7 +23,7 @@ export const adminMenu = [
         name: 'menu.admin.clinic',
         menus: [
             {
-                name: 'menu.admin.manage-clinic', link: '/system/clinic_manage'
+                name: 'menu.admin.manage-clinic', link: '/system/clinic-manage'
             }
         ]
     },
@@ -32,7 +32,7 @@ export const adminMenu = [
         name: 'menu.admin.specialty',
         menus: [
             {
-                name: 'menu.admin.manage-specialty', link: '/system/specialty_manage'
+                name: 'menu.admin.manage-specialty', link: '/system/specialty-manage'
             }
         ]
     },
@@ -41,7 +41,7 @@ export const adminMenu = [
         name: 'menu.admin.handbook',
         menus: [
             {
-                name: 'menu.admin.manage-handbook', link: '/system/handbook_manage'
+                name: 'menu.admin.manage-handbook', link: '/system/handbook-manage'
             }
         ]
     },
