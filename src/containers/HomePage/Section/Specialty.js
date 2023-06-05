@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import { withRouter } from 'react-router';
 import { getAllSpecialtiesService } from '../../../services/userService';
 import * as actions from "../../../store/actions";
 
@@ -29,6 +30,14 @@ class Specialty extends Component {
         }
     }
 
+    handleViewSpecialtyDetails = (specialty) => {
+        console.log('specialty ', specialty);
+        console.log(this.props);
+        if (this.props.history) {
+            this.props.history.push(`/specialty-details/${specialty.id}`)
+        }
+    }
+
     render() {
         let specialtiesList = this.state.specialties;
 
@@ -47,9 +56,8 @@ class Specialty extends Component {
                                     if (item.image) {
                                         imgBase64 = new Buffer(item.image, 'base64').toString('binary');
                                     }
-                                    console.log(imgBase64);
                                     return (
-                                        <div className='section-customize'>
+                                        <div className='section-customize' key={index} onClick={() => this.handleViewSpecialtyDetails(item)}>
                                             <div className='outer-bg'>
                                                 <div className='bg-image img-specialty'
                                                     style={{ backgroundImage: `url(${imgBase64})` }}
@@ -86,4 +94,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Specialty));
