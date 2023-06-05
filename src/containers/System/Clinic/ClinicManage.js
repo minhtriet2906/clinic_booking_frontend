@@ -27,6 +27,9 @@ class ClinicManage extends Component {
             contentMarkdown: '',
             description: '',
 
+            previewImgURL: '',
+            image: '',
+
             action: CRUD_ACTIONS.EDIT,
         }
     }
@@ -72,11 +75,18 @@ class ClinicManage extends Component {
 
         console.log('res', res);
 
+        let imgBase64 = '';
+        if (res.data.image) {
+            imgBase64 = new Buffer(res.data.image, 'base64').toString('binary');
+        }
+
         if (res && res.errorCode === 0 && res.data) {
             this.setState({
                 name: res.data.name,
                 address: res.data.address,
                 note: res.data.note,
+                previewImgURL: imgBase64,
+                image: res.data.image
             });
 
             if (res.data.Markdown) {
