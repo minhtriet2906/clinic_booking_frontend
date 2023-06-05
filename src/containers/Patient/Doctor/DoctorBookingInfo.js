@@ -17,7 +17,12 @@ class DoctorBookingInfo extends Component {
     }
 
     async componentDidMount() {
-
+        let res = await getDoctorBookingInfoService(this.props.doctorIdFromDetails);
+        if (res && res.errorCode === 0) {
+            this.setState({
+                doctorBookingInfo: res.data ? res.data : {}
+            })
+        }
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
