@@ -111,7 +111,7 @@ class DoctorProfile extends Component {
                                 </>
                                 :
                                 <>
-                                    {this.renderBookingTime(bookingTime, language)}
+                                    {bookingTime && this.renderBookingTime(bookingTime, language)}
                                 </>
                             }
                         </div>
