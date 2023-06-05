@@ -77,6 +77,9 @@
     .section-body {
       .section-customize {
         cursor: pointer;
+        :hover {
+          color: red;
+        }
 
         .outer-bg {
           display: flex;
@@ -92,11 +95,11 @@
             width: 278px;
 
             &.img-specialty {
-              background-image: url(../../assets/specialty/co-xuong-khop.jpg);
+              // background-image: url(../../assets/specialty/co-xuong-khop.jpg);
             }
 
             &.img-medical-facility {
-              background-image: url(../../assets/medical_facility/benh-vien.jpg);
+              // background-image: url(../../assets/medical_facility/benh-vien.jpg);
             }
 
             &.img-doctor {
