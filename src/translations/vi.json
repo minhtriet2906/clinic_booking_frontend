@@ -126,18 +126,23 @@
       "choose-doctor": "Chọn bác sĩ",
       "introduction": "Giới thiệu",
       "detail-infor": "Thông tin chi tiết",
+
       "price": "Giá khám bệnh",
       "payment": "Phương thức thanh toán",
       "province": "Tỉnh thành",
-      "clinic-name": "Tên phòng khám",
-      "clinic-address": "Địa chỉ phòng khám",
-      "note": "Ghi chú"
+
+      "clinic": "Phòng khám",
+      "note": "Ghi chú",
+
+      "specialty": "Chuyên Khoa"
     }
   },
 
   "homepage": {
     "more-info": "XEM THÊM",
-    "top-doctor": "Bác sĩ nổi bật"
+    "top-doctor": "Bác sĩ nổi bật",
+    "specialty": "Chuyên khoa phổ biến",
+    "clinic": "Phòng khám nổi bật"
   },
 
   "system": {
