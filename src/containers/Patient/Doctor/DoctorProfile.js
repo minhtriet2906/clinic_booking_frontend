@@ -6,6 +6,8 @@ import { getDoctorProfileService } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
 import NumberFormat from 'react-number-format';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
+import Router from 'react-router-dom'
 
 class DoctorProfile extends Component {
 
@@ -81,7 +83,7 @@ class DoctorProfile extends Component {
     render() {
         console.log(this.state.doctorProfile);
         let { doctorProfile } = this.state;
-        let { language, isShowDoctorDescription, bookingTime } = this.props;
+        let { language, doctorId, isShowDoctorDescription, bookingTime, isShowDoctorDetails, isShowBookingPrice } = this.props;
 
         let nameVi = '', nameEn = '';
 
@@ -117,34 +119,42 @@ class DoctorProfile extends Component {
                         </div>
                     </div>
                 </div>
-                <div className='fee'>
-                    <FormattedMessage
-                        id="patient.booking-info.price-title">
-                    </FormattedMessage>
+                {isShowDoctorDetails &&
+                    <div className='view-doctor-details'>
+                        <Link to={`/doctor-details/${doctorId}`}>More details</Link>
+                    </div>
+                }
 
-                    {doctorProfile.Doctor_Infor ? //check Doctor_Infor
-                        language === LANGUAGES.VI ? // check language
-                            doctorProfile.Doctor_Infor.priceData ? //check Doctor_Infor.priceData
-                                < NumberFormat
-                                    className='currency'
-                                    value={doctorProfile.Doctor_Infor.priceData.valueVi ? doctorProfile.Doctor_Infor.priceData.valueVi : ''}
-                                    displayType='text'
-                                    thousandSeparator={true}
-                                    suffix='đ'>
-                                </NumberFormat> : ''
+                {isShowBookingPrice &&
+                    <div className='fee'>
+                        <FormattedMessage
+                            id="patient.booking-info.price-title">
+                        </FormattedMessage>
+
+                        {doctorProfile.Doctor_Infor ? //check Doctor_Infor
+                            language === LANGUAGES.VI ? // check language
+                                doctorProfile.Doctor_Infor.priceData ? //check Doctor_Infor.priceData
+                                    < NumberFormat
+                                        className='currency'
+                                        value={doctorProfile.Doctor_Infor.priceData.valueVi ? doctorProfile.Doctor_Infor.priceData.valueVi : ''}
+                                        displayType='text'
+                                        thousandSeparator={true}
+                                        suffix='đ'>
+                                    </NumberFormat> : ''
+                                :
+                                doctorProfile.Doctor_Infor.priceData ? //check Doctor_Infor.valueVi
+                                    < NumberFormat
+                                        className='currency'
+                                        value={doctorProfile.Doctor_Infor.priceData.valueEn ? doctorProfile.Doctor_Infor.priceData.valueEn : ''}
+                                        displayType='text'
+                                        thousandSeparator={true}
+                                        suffix='$'>
+                                    </NumberFormat> : ''
                             :
-                            doctorProfile.Doctor_Infor.priceData ? //check Doctor_Infor.valueVi
-                                < NumberFormat
-                                    className='currency'
-                                    value={doctorProfile.Doctor_Infor.priceData.valueEn ? doctorProfile.Doctor_Infor.priceData.valueEn : ''}
-                                    displayType='text'
-                                    thousandSeparator={true}
-                                    suffix='$'>
-                                </NumberFormat> : ''
-                        :
-                        ''
-                    }
-                </div>
+                            ''
+                        }
+                    </div>
+                }
 
             </div>
 
