@@ -189,7 +189,9 @@ class BookingModal extends Component {
                             <DoctorProfile
                                 doctorId={this.props.doctorId}
                                 isShowDoctorDescription={false}
-                                bookingTime={bookingTime}>
+                                bookingTime={bookingTime}
+                                isShowDoctorDetails={false}
+                                isShowBookingPrice={true}>
                             </DoctorProfile>
                         </div>
                         <div className='row'>

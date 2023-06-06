@@ -1,15 +1,24 @@
 .specialty-details-container {
   .specialty-details-body {
     margin: 0 100px;
+    display: flex;
+    flex-direction: column;
+    background-color: white !important;
   }
 
   .specialty-content {
-    height: 500px;
+    height: 550px;
+    padding: 10px;
+    background: #eee;
 
     .specialty-title {
       font-weight: bold;
       font-size: 24px;
     }
+  }
+
+  .province {
+    margin-top: 10px;
   }
 
   .doctor {

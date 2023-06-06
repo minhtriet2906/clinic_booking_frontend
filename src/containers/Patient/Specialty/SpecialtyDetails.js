@@ -9,8 +9,6 @@ import * as actions from "../../../store/actions";
 import { LANGUAGES } from '../../../utils';
 import Select from 'react-select';
 
-
-
 import { getSpecialtyDetailsService } from '../../../services/userService';
 import './SpecialtyDetails.scss'
 
@@ -26,7 +24,7 @@ class SpecialtyDetails extends Component {
             provinces: [],
             selectedProvince: {
                 value: 'ALL',
-                label: 'Toàn quốc',
+                label: 'Toàn quốc (Nationwide)',
             },
             provinceLabel: '',
 
@@ -80,7 +78,7 @@ class SpecialtyDetails extends Component {
         let language = this.props.language;
         if (data && data.length > 0) {
             optionsList.push({
-                label: 'Toàn quốc',
+                label: 'Toàn quốc (Nationwide)',
                 value: 'ALL',
             })
 
@@ -115,7 +113,7 @@ class SpecialtyDetails extends Component {
                             </div>
                         }
                     </div >
-                    <div className='col-4 province'>
+                    <div className='col-3 province'>
                         <label><FormattedMessage id="admin.manage-doctor-infor.province"></FormattedMessage></label>
                         <Select
                             onChange={this.handleSelectProvince}
@@ -137,6 +135,9 @@ class SpecialtyDetails extends Component {
                                                     <DoctorProfile
                                                         doctorId={item.doctorId}
                                                         isShowDoctorDescription={true}
+                                                        isShowDoctorDetails={true}
+                                                        isShowBookingPrice={false}
+                                                        key={index}
                                                     ></DoctorProfile>
                                                 </div>
                                             </div>
