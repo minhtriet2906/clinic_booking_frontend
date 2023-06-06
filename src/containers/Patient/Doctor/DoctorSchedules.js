@@ -23,6 +23,15 @@ class DoctorSchedules extends Component {
     async componentDidMount() {
         let { language } = this.props;
         await this.getWeekDays(language);
+
+        if (this.props.doctorIdFromDetails) {
+            let res = await getDoctorSchedulesByDateService(this.props.doctorIdFromDetails, this.state.days[0].value);
+            if (res && res.errorCode === 0) {
+                this.setState({
+                    schedules: res.data ? res.data : []
+                })
+            }
+        }
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
