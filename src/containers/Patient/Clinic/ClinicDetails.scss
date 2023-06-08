@@ -1,0 +1,60 @@
+.clinic-details-container {
+  .clinic-details-body {
+    margin: 0 100px;
+    display: flex;
+    flex-direction: column;
+    background-color: white !important;
+  }
+
+  .clinic-content {
+    height: auto;
+    padding: 10px;
+    background: #eee;
+
+    .clinic-title {
+      font-weight: bold;
+      font-size: 24px;
+    }
+  }
+
+  .doctor-list-title {
+    font-weight: bold;
+    font-size: 24px;
+  }
+
+  .province {
+    margin-top: 10px;
+  }
+
+  .doctor {
+    display: flex;
+    width: 100%;
+    min-height: 300px;
+    margin: 15px 0;
+    padding: 10px;
+
+    background-color: #fff;
+    box-shadow: 0 1px 6px #20212447;
+    border-radius: 8px;
+
+    .clinic-left-content {
+      width: 50%;
+      border-right: 1px solid #ddd;
+    }
+
+    .clinic-right-content {
+      width: 50%;
+      padding: 10px;
+
+      .schedule {
+        border-right: unset !important;
+      }
+
+      .booking-info {
+        border-top: 1px solid #ddd;
+        margin-top: 10px;
+        padding-top: 10px;
+      }
+    }
+  }
+}
