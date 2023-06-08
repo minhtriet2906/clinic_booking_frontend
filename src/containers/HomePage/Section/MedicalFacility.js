@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from "../../../store/actions";
 import { FormattedMessage } from 'react-intl';
+import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import Slider from "react-slick";
 // Import css files
@@ -28,6 +30,15 @@ class MedicalFacility extends Component {
             })
         }
     }
+
+    handleViewClinicDetails = (clinic) => {
+        console.log('clinic ', clinic);
+        if (this.props.history) {
+            this.props.history.push(`/clinic-details/${clinic.id}`)
+        }
+    }
+
+
     render() {
         console.log(this.state.clinics);
         let clinicsList = this.state.clinics;
@@ -47,7 +58,7 @@ class MedicalFacility extends Component {
                                         imgBase64 = new Buffer(item.image, 'base64').toString('binary');
                                     }
                                     return (
-                                        <div className='section-customize'>
+                                        <div className='section-customize' key={index} onClick={() => this.handleViewClinicDetails(item)}>
                                             <div className='outer-bg'>
                                                 <div className='bg-image img-medical-facility'
                                                     style={{ backgroundImage: `url(${imgBase64})` }}
@@ -84,4 +95,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MedicalFacility);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MedicalFacility));
