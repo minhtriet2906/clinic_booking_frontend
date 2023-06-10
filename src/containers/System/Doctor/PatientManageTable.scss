@@ -1,0 +1,43 @@
+.patient-manage-table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+
+  .btn-confirm {
+    margin-right: 10px;
+    height: 30px;
+    border-radius: 3px;
+    color: white;
+    background-color: rgb(210, 0, 3);
+  }
+
+  .btn-send-receipt {
+    margin-right: 10px;
+    height: 30px;
+    border-radius: 3px;
+    color: red;
+    background-color: white;
+  }
+}
+
+#patient-manage-table td,
+#patient-manage-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#patient-manage-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#patient-manage-table tr:hover {
+  background-color: #ddd;
+}
+
+#patient-manage-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: rgb(210, 0, 3);
+  color: white;
+}

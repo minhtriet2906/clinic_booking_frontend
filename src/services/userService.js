@@ -96,18 +96,24 @@ const getSpecialtyDetailsService = (specialtyId) => {
     return axios.get(`/api/get-specialty-details?specialtyId=${specialtyId}`);
 }
 
+const getPatientsListByDateService = (doctorId, formattedDate) => {
+    return axios.get(`/api/get-patients-list-by-date?doctorId=${doctorId}&formattedDate=${formattedDate}`);
+}
+
 export {
     handleLogin,
     getAllUsers,
     createNewUserService,
     deleteUserService,
     editUserService,
+
     getAllCodeService,
 
     getTopDoctorsService,
     getAllDoctorsService,
     saveDoctorInfoService,
     getDoctorDetailsService,
+
     saveBulkScheduleService,
     getDoctorSchedulesByDateService,
     getDoctorBookingInfoService,
@@ -122,5 +128,7 @@ export {
 
     saveMedicalSpecialtyService,
     getAllSpecialtiesService,
-    getSpecialtyDetailsService
+    getSpecialtyDetailsService,
+
+    getPatientsListByDateService
 }
