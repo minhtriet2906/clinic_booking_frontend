@@ -12,7 +12,7 @@ class Doctor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            doctors: []
+            doctors: [],
         }
     }
 
@@ -37,7 +37,7 @@ class Doctor extends Component {
 
     render() {
         let doctorsList = this.state.doctors;
-        console.log(doctorsList);
+
         return (
             <div className="section-share section-doctor">
                 <div className="section-container">
@@ -55,6 +55,8 @@ class Doctor extends Component {
                                     }
                                     let nameVi = `${item.positionData.valueVi} ${item.lastName} ${item.firstName}`;
                                     let nameEn = `${item.positionData.valueEn} ${item.lastName} ${item.firstName}`;
+                                    let specialty = `${item.Doctor_Infor.specialtyData.name}`;
+
                                     return (
                                         <div className='section-customize' key={index} onClick={() => this.handleViewDoctorDetails(item)}>
                                             <div className='outer-bg'>
@@ -64,10 +66,11 @@ class Doctor extends Component {
                                             </div>
                                             <div className='position text-center'>
                                                 <div>{this.props.language === LANGUAGES.VI ? nameVi : nameEn}</div>
-                                                <div>Co xuong khop</div>
+                                                <div>{specialty}</div>
                                             </div>
                                         </div>
                                     )
+
                                 })
                             }
                         </Slider>
@@ -83,13 +86,15 @@ const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn,
         language: state.app.language,
-        doctors: state.admin.doctors
+        doctors: state.admin.doctors,
+
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         getTopDoctors: () => dispatch(actions.fetchTopDoctorsStart()),
+
     };
 };
 
