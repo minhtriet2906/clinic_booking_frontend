@@ -100,6 +100,10 @@ const getPatientsListByDateService = (doctorId, formattedDate) => {
     return axios.get(`/api/get-patients-list-by-date?doctorId=${doctorId}&formattedDate=${formattedDate}`);
 }
 
+const confirmAppointmentCompleteService = (data) => {
+    return axios.post(`/api/confirm-appointment-complete`, data);
+}
+
 export {
     handleLogin,
     getAllUsers,
@@ -130,5 +134,6 @@ export {
     getAllSpecialtiesService,
     getSpecialtyDetailsService,
 
-    getPatientsListByDateService
+    getPatientsListByDateService,
+    confirmAppointmentCompleteService
 }
