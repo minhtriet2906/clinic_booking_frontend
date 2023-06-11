@@ -2,30 +2,20 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import * as actions from "../../../store/actions"
 import { connect } from 'react-redux';
-import './PatientManageTable.scss'
-import MarkdownIt from 'markdown-it';
-import MdEditor from 'react-markdown-editor-lite';
+import './PatientManageTable.scss';
 // import style manually
 import 'react-markdown-editor-lite/lib/index.css';
 import { LANGUAGES } from '../../../utils';
-
-// Register plugins if required
-// MdEditor.use(YOUR_PLUGINS_HERE);
-
-// Initialize a markdown parser
-const mdParser = new MarkdownIt(/* Markdown-it options */);
-
-// Finish!
-function handleEditorChange({ html, text }) {
-    console.log('handleEditorChange', html, text);
-}
+import ConfirmModal from './ConfirmModal';
 
 class PatientManageTable extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            patients: []
+            patients: [],
+            isOpenConfirmModal: false,
+            patientDataModal: {},
         }
     }
 
@@ -37,11 +27,32 @@ class PatientManageTable extends Component {
 
     }
 
-    handleSendReceipt = (user) => {
+    handleConfirm = (booking) => {
+        console.log("edit ", booking);
+        // alert('click')
+
+        let bookingData = {
+            doctorId: booking.doctorId,
+            patientId: booking.patientId,
+            patientEmail: booking.patientData.email,
+            patientFirstName: booking.patientData.firstName,
+            timeType: booking.timeType,
+            time: booking.timeTypeBookingData.valueEn,
+            date: booking.date
+        }
+
+        this.setState({
+            isOpenConfirmModal: true,
+            patientDataModal: bookingData
+        })
+
+        console.log(bookingData);
     }
 
-    handleConfirm = (user) => {
-        console.log("edit ", user);
+    handleCancel = () => {
+        this.setState({
+            isOpenConfirmModal: false
+        })
     }
 
     render() {
@@ -65,20 +76,23 @@ class PatientManageTable extends Component {
                     </thead>
                     <tbody>
                         {arrBookings && arrBookings.length > 0 && arrBookings.map((item, index) => {
+                            let timeType = language === LANGUAGES.VI ? item.timeTypeBookingData.valueVi : item.timeTypeBookingData.valueEn
+                            let gender = language === LANGUAGES.VI ? item.patientData.genderData.valueVi : item.patientData.genderData.valueEn;
                             return (
                                 <tr key={index}>
                                     <td>{index + 1}</td>
-                                    <td>{language === LANGUAGES.VI ? item.timeTypeBookingData.valueVi : item.timeTypeBookingData.valueEn}</td>
+                                    <td>{timeType}</td>
                                     <td>{item.patientData.email}</td>
                                     <td>{item.patientData.firstName}</td>
                                     <td>{item.patientData.lastName}</td>
-                                    <td>{item.patientData.genderData.valueVi}</td>
+                                    <td>{gender}</td>
                                     <td>{item.patientData.address}</td>
                                     <td>{item.patientData.phonenumber}</td>
 
                                     <td>
                                         <button className='btn-confirm' onClick={() => this.handleConfirm(item)}>Confirm</button>
-                                        <button className='btn-send-receipt' onClick={() => this.handleSendReceipt(item)}>Send Receipt</button>
+                                        <button className='btn-cancel' onClick={() => this.handleCancel(item)}>Cancel</button>
+
                                     </td>
                                 </tr>
                             )
@@ -86,6 +100,16 @@ class PatientManageTable extends Component {
                         )}
                     </tbody>
                 </table>
+
+                {this.state.isOpenConfirmModal ?
+                    <ConfirmModal
+                        isOpenModal={this.state.isOpenConfirmModal}
+                        patientDataModal={this.state.patientDataModal}
+                        closeConfirmModal={this.handleCancel}
+                    />
+                    :
+                    ''
+                }
             </React.Fragment>
         );
     }

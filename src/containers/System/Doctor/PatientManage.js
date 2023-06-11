@@ -21,8 +21,6 @@ class PatientManage extends Component {
     async componentDidMount() {
         let { user } = this.props;
         let { selectedDate } = this.state;
-        console.log(user);
-        console.log(selectedDate);
 
         let res = await getPatientsListByDateService(user.id, selectedDate);
         if (res && res.errorCode === 0) {
@@ -57,6 +55,7 @@ class PatientManage extends Component {
 
     render() {
         let minDate = new Date(new Date().setDate(new Date().getDate() - 1));
+        console.log(this.props);
         return (
             <div className='patient-manage-container'>
                 <div className='patient-manage-title'>
