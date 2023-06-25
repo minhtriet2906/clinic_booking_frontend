@@ -19,7 +19,7 @@ class ScheduleManage extends Component {
         this.state = {
             doctorOptions: [],
             timeSlotOptions: [],
-            selectedDoctor: null,
+            selectedDoctor: props.user.role === 'R2' ? props.user.id : null,
             selectedDate: null,
         }
     }
@@ -156,9 +156,8 @@ class ScheduleManage extends Component {
 
     render() {
         let { timeSlotOptions } = this.state;
-        console.log('time slots ', this.state.timeSlotOptions);
         let minDate = new Date(new Date().setDate(new Date().getDate() - 1));
-
+        let doctorName = this.props.user.role === 'R2' ? this.props.user.lastName + ' ' + this.props.user.firstName : null;
         return (
             <div className="schedule-manage-container">
                 <div className="schedule-manage-title">
@@ -168,11 +167,18 @@ class ScheduleManage extends Component {
                     <div className="row">
                         <div className="col-4 choose-doctor">
                             <label><FormattedMessage id='manage-schedule.choose-doctor'></FormattedMessage></label>
-                            <Select
-                                onChange={this.handleSelectDoctor}
-                                options={this.state.doctorOptions}
-                                value={this.state.selectedDoctor}
-                            />
+                            {(this.props.user && this.props.user.role === 'R2') ?
+                                <input className='form-control'
+                                    defaultValue={doctorName}
+                                ></input>
+                                :
+                                <Select
+                                    onChange={this.handleSelectDoctor}
+                                    options={this.state.doctorOptions}
+                                    value={this.state.selectedDoctor}
+                                />
+                            }
+
                         </div>
                         <div className="col-4 date-picker">
                             <label><label><FormattedMessage id='manage-schedule.choose-date'></FormattedMessage></label>
@@ -214,7 +220,9 @@ const mapStateToProps = (state) => {
         isLoggedIn: state.user.isLoggedIn,
         language: state.app.language,
         doctors: state.admin.doctors,
-        timeSlots: state.admin.timeSlots
+        timeSlots: state.admin.timeSlots,
+        user: state.user.userInfo
+
     };
 };
 
