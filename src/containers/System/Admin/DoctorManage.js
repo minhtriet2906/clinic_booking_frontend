@@ -31,7 +31,7 @@ class DoctorManage extends Component {
             selectedClinic: null,
             clinicValue: null,
 
-            specialtiesOptions: [],
+            specialtyOptions: [],
             selectedSpecialty: null,
             specialtyValue: null,
 
@@ -86,7 +86,7 @@ class DoctorManage extends Component {
             let specialtiesList = this.createSpecialtiesListOptions(this.props.specialties);
 
             this.setState({
-                specialtiesOptions: specialtiesList,
+                specialtyOptions: specialtiesList,
             })
         }
 
@@ -394,7 +394,7 @@ class DoctorManage extends Component {
                         <label><FormattedMessage id="admin.manage-doctor-infor.specialty"></FormattedMessage></label>
                         <Select
                             onChange={this.handleSelectSpecialty}
-                            options={this.state.specialtiesOptions}
+                            options={this.state.specialtyOptions}
                             value={this.state.selectedSpecialty}
                             placeholder="Choose specialty"
                         />
