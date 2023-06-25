@@ -6,9 +6,16 @@ import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../utils'
 import { changeLanguageApp } from '../../store/actions/appActions';
 import { withRouter } from 'react-router';
-
+import SearchDropdown from './Section/SearchDropdown';
 
 class HomeHeader extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isSearching: false,
+            searchString: ''
+        }
+    }
 
     changeLanguage = (language) => {
         this.props.changeLanguageAppRedux(language)
@@ -20,10 +27,30 @@ class HomeHeader extends Component {
         }
     }
 
+    handleInputChange = (event) => {
+        const search = event.target.value;
+        this.setState({
+            searchString: search
+        })
+
+        // Show/hide the dropdown based on the input value
+        if (search.trim().length > 0) {
+            this.setState({
+                isSearching: true
+            })
+        } else {
+            this.setState({
+                isSearching: false
+            })
+        }
+
+        console.log(this.state.searchString);
+    };
+
     render() {
         let language = this.props.language;
         console.log("user ", this.props.userInfo);
-        console.log(this.props.language);
+        console.log(this.props);
         return (
             <React.Fragment>
                 <div className='home-header-container'>
@@ -75,8 +102,13 @@ class HomeHeader extends Component {
                             <div className='title-2'><div><FormattedMessage id="banner.title-2" /></div></div>
                             <div className='search'>
                                 <i className='fas fa-search'></i>
-                                <input type='text' placeholder='Tìm kiếm' />
+                                <input type='text' placeholder='Tìm kiếm' onChange={(event) => this.handleInputChange(event)} />
                             </div>
+                            <SearchDropdown
+                                isSearching={this.state.isSearching}
+                                searchString={this.state.searchString}
+                                history={this.props.history}>
+                            </SearchDropdown>
                         </div>
                         <div className='content-down'>
                             <div className='options'>
