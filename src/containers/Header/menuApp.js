@@ -1,12 +1,9 @@
 export const adminMenu = [
     { //user manage
-        name: 'menu.admin.manage-user',
+        name: 'menu.admin.user',
         menus: [
             {
-                name: 'menu.admin.crud', link: '/system/user-manage'
-            },
-            {
-                name: 'menu.admin.crud-redux', link: '/system/user-redux'
+                name: 'menu.admin.manage-user', link: '/system/user-manage'
             },
             {
                 name: 'menu.admin.manage-doctor', link: '/system/doctor-manage'
@@ -49,7 +46,7 @@ export const adminMenu = [
 
 export const doctorMenu = [
     { //Doctor's schedule manage
-        name: 'menu.admin.manage-user',
+        name: 'menu.admin.user',
         menus: [
             {
                 name: 'menu.doctor.manage-schedule', link: '/doctor/schedule-manage'
