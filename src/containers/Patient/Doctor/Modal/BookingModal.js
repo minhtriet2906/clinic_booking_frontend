@@ -177,7 +177,7 @@ class BookingModal extends Component {
     render() {
         let { isOpenBookingModal, closeBookingModal, bookingTime } = this.props;
         let gendersList = this.state.genders;
-
+        console.log(bookingTime);
         return (
             <>
                 <Modal isOpen={isOpenBookingModal}
@@ -186,7 +186,11 @@ class BookingModal extends Component {
                     centered>
                     <div className='booking-modal-content'>
                         <div className='booking-modal-header'>
-                            <span className='left'><FormattedMessage id="patient.booking-modal.title"></FormattedMessage></span>
+                            <span className='left'>
+                                <FormattedMessage id="patient.booking-modal.title"></FormattedMessage>
+                            </span>
+                            <br></br>
+                            <FormattedMessage id="patient.booking-modal.note"></FormattedMessage>
                             <span className='right'
                                 onClick={closeBookingModal}>
                                 <i className='fas fa-times'></i>
@@ -237,9 +241,9 @@ class BookingModal extends Component {
                                 </div>
                                 <div className='col-6 form-group'>
                                     <label><FormattedMessage id="patient.booking-modal.reason"></FormattedMessage></label>
-                                    <input className='form-control'
+                                    <textarea className='form-control'
                                         value={this.state.reason}
-                                        onChange={(event) => this.handleOnChangeInput(event, 'reason')}></input>
+                                        onChange={(event) => this.handleOnChangeInput(event, 'reason')}></textarea>
                                 </div>
                                 <div className='col-6 form-group'>
                                     <label><FormattedMessage id="patient.booking-modal.birthday"></FormattedMessage></label>
