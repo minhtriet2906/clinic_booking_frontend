@@ -12,6 +12,7 @@ import moment from "moment";
 import _ from "lodash";
 
 import { saveBulkScheduleService } from "../../../services/userService";
+import ScheduleManageTable from "./ScheduleManageTable";
 
 class ScheduleManage extends Component {
     constructor(props) {
@@ -25,6 +26,17 @@ class ScheduleManage extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.user !== this.props.user) {
+            if (this.props.user.role === 'R2') {
+                this.setState({
+                    selectedDoctor: {
+                        value: this.props.user.id,
+                        label: this.props.user.lastName + ' ' + this.props.user.firstName
+                    },
+                })
+            }
+        }
+
         if (prevProps.doctors !== this.props.doctors) {
             let optionsList = this.createDoctorsListOptions(this.props.doctors);
             this.setState({
@@ -54,6 +66,15 @@ class ScheduleManage extends Component {
     componentDidMount() {
         this.props.getAllDoctors();
         this.props.getScheduleTimeSlots();
+
+        if (this.props.user && this.props.user.role === 'R2') {
+            this.setState({
+                selectedDoctor: {
+                    value: this.props.user.id,
+                    label: this.props.user.lastName + ' ' + this.props.user.firstName
+                },
+            })
+        }
     }
 
     createDoctorsListOptions = (data) => {
@@ -104,6 +125,7 @@ class ScheduleManage extends Component {
 
     handleSaveSchedule = async () => {
         let { timeSlotOptions, selectedDoctor, selectedDate } = this.state;
+        console.log(selectedDoctor);
         let schedules = []
 
         if (!selectedDate) {
@@ -136,10 +158,10 @@ class ScheduleManage extends Component {
                 return;
             }
         }
-        console.log('schedules', schedules);
+
         let res = await saveBulkScheduleService({
             schedulesArr: schedules,
-            doctorId: selectedDoctor.value,
+            doctorId: selectedDoctor,
             formattedDate: formattedDate
         });
 
@@ -170,6 +192,7 @@ class ScheduleManage extends Component {
                             {(this.props.user && this.props.user.role === 'R2') ?
                                 <input className='form-control'
                                     defaultValue={doctorName}
+                                    disabled
                                 ></input>
                                 :
                                 <Select
@@ -206,6 +229,13 @@ class ScheduleManage extends Component {
                                     onClick={() => this.handleSaveSchedule()}>
                                     <FormattedMessage id='manage-schedule.save' />
                                 </button>
+                            </div>
+
+                            <div className='col-12 mt-3 mb-5'>
+                                <ScheduleManageTable
+                                    doctor={this.state.selectedDoctor}
+                                    formattedDate={new Date(this.state.selectedDate).getTime()}
+                                />
                             </div>
                         </div>
                     </div>
