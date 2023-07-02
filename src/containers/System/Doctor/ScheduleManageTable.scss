@@ -1,0 +1,43 @@
+#schedule-manage-table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+#schedule-manage-table td,
+#schedule-manage-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#schedule-manage-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#schedule-manage-table tr:hover {
+  background-color: #ddd;
+}
+
+#schedule-manage-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: rgb(210, 0, 3);
+  color: white;
+}
+
+.header-container {
+  background-color: rgb(210, 0, 3);
+}
+
+.btn-delete {
+  width: 50px;
+  border: none !important;
+  outline: none;
+  background: transparent;
+  color: rgb(210, 0, 3);
+
+  &:hover {
+    background-color: transparent !important;
+    color: rgb(255, 0, 4) !important;
+  }
+}
