@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from "../../../utils"
 import * as actions from "../../../store/actions"
 import Lightbox from 'react-image-lightbox';
-import './UserRedux.scss'
+import './UserManage.scss'
 import UserManageTable from './UserManageTable';
 
-class UserRedux extends Component {
+class UserManage extends Component {
 
     constructor(props) {
         super(props);
@@ -142,7 +142,7 @@ class UserRedux extends Component {
         })
     }
 
-    handleEditUserRedux = (user) => {
+    handleEditUserManage = (user) => {
         let imgBase64 = '';
         if (user.image) {
             imgBase64 = new Buffer(user.image, 'base64').toString('binary');
@@ -240,12 +240,12 @@ class UserRedux extends Component {
         } = this.state
 
         return (
-            <div className='user-redux-container'>
+            <div className='user-manage-container'>
                 <div className='title'>
-                    User Redux
+                    <FormattedMessage id='menu.admin.manage-user'></FormattedMessage>
                 </div>
 
-                <div className="user-redux-body" >
+                <div className="user-manage-body" >
                     <div className='container'>
                         <div className='row'>
                             <div className='col-12 my-3'><FormattedMessage id="manage-user.add" /></div>
@@ -366,7 +366,7 @@ class UserRedux extends Component {
 
                             <div className='col-12 mt-3 mb-5'>
                                 <UserManageTable
-                                    handleEditUserRedux={this.handleEditUserRedux}
+                                    handleEditUserManage={this.handleEditUserManage}
                                     action={this.state.action}
                                 />
                             </div>
@@ -412,4 +412,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserRedux);
+export default connect(mapStateToProps, mapDispatchToProps)(UserManage);
