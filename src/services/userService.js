@@ -104,6 +104,10 @@ const confirmAppointmentCompleteService = (data) => {
     return axios.post(`/api/confirm-appointment-complete`, data);
 }
 
+const cancelAppointmentService = (data) => {
+    return axios.post(`/api/cancel-appointment`, data);
+}
+
 export {
     handleLogin,
     getAllUsers,
@@ -135,5 +139,7 @@ export {
     getSpecialtyDetailsService,
 
     getPatientsListByDateService,
-    confirmAppointmentCompleteService
+
+    confirmAppointmentCompleteService,
+    cancelAppointmentService
 }
