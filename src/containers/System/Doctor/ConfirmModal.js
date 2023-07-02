@@ -85,9 +85,7 @@ class ConfirmModal extends Component {
         console.log(res);
     }
 
-    handleCancelBooking = () => {
-        console.log(this.state);
-    }
+
 
     handleOnChangePatientEmail = (event) => {
         this.setState({
