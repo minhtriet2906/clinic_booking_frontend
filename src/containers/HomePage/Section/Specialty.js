@@ -45,7 +45,6 @@ class Specialty extends Component {
             <div className="section-share section-specialty">
                 <div className="section-container">
                     <div className="section-header">
-                        <button><FormattedMessage id='homepage.more-info' /></button>
                         <span><div><FormattedMessage id='homepage.specialty'></FormattedMessage></div></span>
                     </div>
                     <div className='section-body'>

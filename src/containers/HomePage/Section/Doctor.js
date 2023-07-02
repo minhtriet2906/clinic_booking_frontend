@@ -42,7 +42,6 @@ class Doctor extends Component {
             <div className="section-share section-doctor">
                 <div className="section-container">
                     <div className="section-header">
-                        <button><div><FormattedMessage id='homepage.more-info'></FormattedMessage></div></button>
                         <span><div><FormattedMessage id='homepage.top-doctor'></FormattedMessage></div></span>
                     </div>
                     <div className='section-body'>

@@ -46,7 +46,6 @@ class MedicalFacility extends Component {
             <div className="section-share section-medical-facility">
                 <div className="section-container">
                     <div className="section-header">
-                        <button><FormattedMessage id='homepage.more-info' /></button>
                         <span><div><FormattedMessage id='homepage.clinic'></FormattedMessage></div></span>
                     </div>
                     <div className='section-body'>
