@@ -7,6 +7,8 @@ import './PatientManageTable.scss';
 import 'react-markdown-editor-lite/lib/index.css';
 import { LANGUAGES } from '../../../utils';
 import ConfirmModal from './ConfirmModal';
+import { cancelAppointmentService } from '../../../services/userService';
+import { toast } from 'react-toastify';
 
 class PatientManageTable extends Component {
 
@@ -49,10 +51,33 @@ class PatientManageTable extends Component {
         console.log(bookingData);
     }
 
-    handleCancel = () => {
+    handleCancel = async (booking) => {
         this.setState({
             isOpenConfirmModal: false
         })
+
+        let bookingData = {
+            doctorId: booking.doctorId,
+            patientId: booking.patientId,
+            patientEmail: booking.patientData.email,
+            patientFirstName: booking.patientData.firstName,
+            timeType: booking.timeType,
+            time: booking.timeTypeBookingData.valueEn,
+            date: booking.date
+        }
+
+        let res = await cancelAppointmentService(bookingData);
+        if (res && res.errorCode === 0) {
+            toast.success('Appointment Completed!');
+            this.setState({
+                isLoading: false
+            })
+        }
+        else {
+            toast.error('Error!');
+        }
+
+        console.log(res);
     }
 
     render() {
