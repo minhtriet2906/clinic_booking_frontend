@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../../utils';
-import { getDoctorSchedulesByDateService } from '../../../services/userService';
+import { getDoctorSchedulesByDateService, deleteScheduleService } from '../../../services/userService';
 import './ScheduleManageTable.scss';
+import { toast } from 'react-toastify';
 
 
 class ScheduleManageTable extends Component {
@@ -40,7 +41,28 @@ class ScheduleManageTable extends Component {
         }
     }
 
-    handleDeleteSchedule = (schedule) => {
+    handleDeleteSchedule = async (schedule) => {
+        console.log(schedule);
+        let res = await deleteScheduleService({
+            doctorId: schedule.doctorId,
+            timeType: schedule.timeType,
+            date: schedule.date,
+        });
+        console.log(res);
+        if (res && res.errorCode === 0) {
+            toast.success(res.message);
+            if (this.props.doctor.value) {
+                let res = await getDoctorSchedulesByDateService(this.props.doctor.value, this.props.formattedDate);
+                if (res && res.errorCode === 0) {
+                    this.setState({
+                        schedules: res.data ? res.data : []
+                    })
+                }
+            }
+        }
+        else {
+            toast.error('Error!');
+        }
     }
 
     render() {
@@ -62,7 +84,7 @@ class ScheduleManageTable extends Component {
                             let scheduleDisplay = language === LANGUAGES.VI ? item.timeTypeData.valueVi : item.timeTypeData.valueEn;
                             let doctorName = language === LANGUAGES.VI ?
                                 item.doctorData.lastName + ' ' + item.doctorData.firstName :
-                                item.doctorData.firstName + ' ' + item.doctorData.lastName
+                                item.doctorData.firstName + ' ' + item.doctorData.lastName;
                             return (
                                 <tr key={index}>
                                     <td>{index}</td>
