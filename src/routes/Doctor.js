@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Header from '../containers/Header/Header';
 import ScheduleManage from '../containers/System/Doctor/ScheduleManage';
 import PatientManage from '../containers/System/Doctor/PatientManage';
+import DoctorManage from '../containers/System/Admin/DoctorManage';
 
 
 class Doctor extends Component {
@@ -16,6 +17,7 @@ class Doctor extends Component {
                 {isLoggedIn && <Header />}
                 <div className='system-list'>
                     <Switch>
+                        <Route path="/doctor/doctor-manage" component={DoctorManage} />
                         <Route path="/doctor/schedule-manage" component={ScheduleManage} />
                         <Route path="/doctor/patient-manage" component={PatientManage} />
 

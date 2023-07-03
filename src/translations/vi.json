@@ -64,6 +64,8 @@
       "manage-handbook": "Quản lý cẩm nang"
     },
     "doctor": {
+      "doctor-info": "Thông tin bác sĩ",
+      "manage-doctor": "Quản lý thông tin bác sĩ",
       "manage-schedule": "Quản lý lịch khám bệnh",
       "manage-patient": "Quản lý bệnh nhân khám bệnh"
     }

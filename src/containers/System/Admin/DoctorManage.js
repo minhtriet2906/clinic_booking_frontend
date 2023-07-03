@@ -51,7 +51,7 @@ class DoctorManage extends Component {
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         this.props.getAllDoctors();
 
         this.props.getBookingPrices();
@@ -60,9 +60,33 @@ class DoctorManage extends Component {
 
         this.props.getAllClinics();
         this.props.getAllSpecialties();
+
+        if (this.props.user && this.props.user.role === 'R2') {
+            await this.setState({
+                selectedDoctor: {
+                    value: this.props.user.id,
+                    label: this.props.user.lastName + ' ' + this.props.user.firstName
+                },
+            })
+
+            this.handleSelectDoctor(this.state.selectedDoctor);
+        }
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    async componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.user !== this.props.user) {
+            if (this.props.user.role === 'R2') {
+                await this.setState({
+                    selectedDoctor: {
+                        value: this.props.user.id,
+                        label: this.props.user.lastName + ' ' + this.props.user.firstName
+                    },
+                })
+
+                this.handleSelectDoctor(this.state.selectedDoctor);
+            }
+        }
+
         if (prevProps.doctors !== this.props.doctors ||
             prevProps.language !== this.props.language) {
             let doctorsList = this.createDoctorsListOptions(this.props.doctors);
@@ -328,6 +352,8 @@ class DoctorManage extends Component {
     }
 
     render() {
+        let doctorName = this.props.user.role === 'R2' ? this.props.user.lastName + ' ' + this.props.user.firstName : null;
+        console.log(this.state.selectedDoctor);
         return (
             <div className='doctor-manage-container'>
                 <div className='doctor-manage-title'>
@@ -336,12 +362,19 @@ class DoctorManage extends Component {
                 <div className='more-info'>
                     <div className='content-left form-group'>
                         <label><FormattedMessage id="admin.manage-doctor-infor.choose-doctor"></FormattedMessage></label>
-                        <Select
-                            onChange={this.handleSelectDoctor}
-                            options={this.state.doctorOptions}
-                            value={this.state.selectedDoctor}
-                            placeholder="Choose doctor"
-                        />
+                        {(this.props.user && this.props.user.role === 'R2') ?
+                            <input className='form-control'
+                                defaultValue={doctorName}
+                                disabled
+                            ></input>
+                            :
+                            <Select
+                                onChange={this.handleSelectDoctor}
+                                options={this.state.doctorOptions}
+                                value={this.state.selectedDoctor}
+                                placeholder="Choose doctor"
+                            />
+                        }
                     </div>
                     <div className='content-right'>
                         <label><FormattedMessage id="admin.manage-doctor-infor.introduction"></FormattedMessage></label>
@@ -440,6 +473,8 @@ const mapStateToProps = state => {
 
         clinics: state.admin.clinics,
         specialties: state.admin.specialties,
+
+        user: state.user.userInfo
     };
 };
 

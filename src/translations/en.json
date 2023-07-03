@@ -64,6 +64,8 @@
       "manage-handbook": "Handbooks Management"
     },
     "doctor": {
+      "doctor-info": "Doctor's Infomation",
+      "manage-doctor": "Doctor's Information Management",
       "manage-schedule": "Doctor's Schedule Management",
       "manage-patient": "Doctor's Patients Management"
     }
