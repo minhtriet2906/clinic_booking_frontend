@@ -189,8 +189,10 @@ class BookingModal extends Component {
                             <span className='left'>
                                 <FormattedMessage id="patient.booking-modal.title"></FormattedMessage>
                             </span>
-                            <br></br>
-                            <FormattedMessage id="patient.booking-modal.note"></FormattedMessage>
+                            <span className='note'>
+                                <br></br>
+                                <FormattedMessage id="patient.booking-modal.note"></FormattedMessage>
+                            </span>
                             <span className='right'
                                 onClick={closeBookingModal}>
                                 <i className='fas fa-times'></i>
