@@ -68,7 +68,7 @@ class PatientManageTable extends Component {
 
         let res = await cancelAppointmentService(bookingData);
         if (res && res.errorCode === 0) {
-            toast.success('Appointment Completed!');
+            toast.success('Appointment Cancelled!');
             this.setState({
                 isLoading: false
             })

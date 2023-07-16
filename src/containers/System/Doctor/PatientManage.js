@@ -54,12 +54,11 @@ class PatientManage extends Component {
 
 
     render() {
-        let minDate = new Date(new Date().setDate(new Date().getDate() - 1));
         console.log(this.props);
         return (
             <div className='patient-manage-container'>
                 <div className='patient-manage-title'>
-                    Patient manage
+                    Patient Booking Appointmens manage
                 </div>
                 <div className='patient-manage-body row'>
 
@@ -70,7 +69,6 @@ class PatientManage extends Component {
                             className="form-control"
                             onChange={this.handleSelectDatePicker}
                             value={this.state.selectedDate}
-                            minDate={minDate}
                         />
                     </div>
 
