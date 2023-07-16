@@ -18,11 +18,16 @@ class ScheduleManageTable extends Component {
 
     async componentDidMount() {
         if (this.props.doctor && this.props.formattedDate) {
-            let res = await getDoctorSchedulesByDateService(this.props.doctor.value, this.props.formattedDate);
-            if (res && res.errorCode === 0) {
-                this.setState({
-                    schedules: res.data ? res.data : []
-                })
+            if (this.props.doctor) {
+                let res = await getDoctorSchedulesByDateService(this.props.doctor.value, this.props.formattedDate);
+                if (res && res.errorCode === 0) {
+                    this.setState({
+                        schedules: res.data ? res.data : []
+                    })
+                }
+            }
+            else {
+                toast.error("Please select doctor");
             }
         }
     }
@@ -30,13 +35,16 @@ class ScheduleManageTable extends Component {
     async componentDidUpdate(prevProps, prevState, snapshot) {
         if ((this.props.doctor !== prevProps.doctor) ||
             (this.props.formattedDate !== prevProps.formattedDate)) {
-            if (this.props.doctor.value) {
+            if (this.props.doctor) {
                 let res = await getDoctorSchedulesByDateService(this.props.doctor.value, this.props.formattedDate);
                 if (res && res.errorCode === 0) {
                     this.setState({
                         schedules: res.data ? res.data : []
                     })
                 }
+            }
+            else {
+                toast.error("Please select doctor");
             }
         }
     }
@@ -51,13 +59,16 @@ class ScheduleManageTable extends Component {
         console.log(res);
         if (res && res.errorCode === 0) {
             toast.success(res.message);
-            if (this.props.doctor.value) {
+            if (this.props.doctor) {
                 let res = await getDoctorSchedulesByDateService(this.props.doctor.value, this.props.formattedDate);
                 if (res && res.errorCode === 0) {
                     this.setState({
                         schedules: res.data ? res.data : []
                     })
                 }
+            }
+            else {
+                toast.error("Please select doctor");
             }
         }
         else {
