@@ -58,7 +58,7 @@ class PatientManage extends Component {
         return (
             <div className='patient-manage-container'>
                 <div className='patient-manage-title'>
-                    Patient Booking Appointmens manage
+                    Patient Booking Appointments manage
                 </div>
                 <div className='patient-manage-body row'>
 

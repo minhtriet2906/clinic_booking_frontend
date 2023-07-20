@@ -33,22 +33,26 @@ class PatientManageTable extends Component {
         console.log("edit ", booking);
         // alert('click')
 
-        let bookingData = {
-            doctorId: booking.doctorId,
-            patientId: booking.patientId,
-            patientEmail: booking.patientData.email,
-            patientFirstName: booking.patientData.firstName,
-            timeType: booking.timeType,
-            time: booking.timeTypeBookingData.valueEn,
-            date: booking.date
+        if (booking.doctorId && booking.patientId && booking.patientData.email) {
+            let bookingData = {
+                doctorId: booking.doctorId,
+                patientId: booking.patientId,
+                patientEmail: booking.patientData.email,
+                patientFirstName: booking.patientData.firstName,
+                timeType: booking.timeType,
+                time: booking.timeTypeBookingData.valueEn,
+                date: booking.date
+            }
+
+            this.setState({
+                isOpenConfirmModal: true,
+                patientDataModal: bookingData
+            })
+
+            console.log(bookingData);
+        } else {
+            toast.error('Cancel');
         }
-
-        this.setState({
-            isOpenConfirmModal: true,
-            patientDataModal: bookingData
-        })
-
-        console.log(bookingData);
     }
 
     handleCancel = async (booking) => {
@@ -56,28 +60,39 @@ class PatientManageTable extends Component {
             isOpenConfirmModal: false
         })
 
-        let bookingData = {
-            doctorId: booking.doctorId,
-            patientId: booking.patientId,
-            patientEmail: booking.patientData.email,
-            patientFirstName: booking.patientData.firstName,
-            timeType: booking.timeType,
-            time: booking.timeTypeBookingData.valueEn,
-            date: booking.date
-        }
+        if (booking.doctorId && booking.patientId && booking.patientData.email) {
+            let bookingData = {
+                doctorId: booking.doctorId,
+                patientId: booking.patientId,
+                patientEmail: booking.patientData.email,
+                patientFirstName: booking.patientData.firstName,
+                timeType: booking.timeType,
+                time: booking.timeTypeBookingData.valueEn,
+                date: booking.date
+            }
 
-        let res = await cancelAppointmentService(bookingData);
-        if (res && res.errorCode === 0) {
-            toast.success('Appointment Cancelled!');
-            this.setState({
-                isLoading: false
-            })
+            let res = await cancelAppointmentService(bookingData);
+            if (res && res.errorCode === 0) {
+                toast.success('Appointment Cancelled!');
+                this.setState({
+                    isLoading: false
+                })
+            }
+            else {
+                toast.error('Error!');
+            }
+            console.log(res);
         }
         else {
             toast.error('Error!');
         }
+    }
 
-        console.log(res);
+    closeConfirmModal = () => {
+        this.setState({
+            isOpenConfirmModal: false
+        })
+
     }
 
     render() {
@@ -130,7 +145,7 @@ class PatientManageTable extends Component {
                     <ConfirmModal
                         isOpenModal={this.state.isOpenConfirmModal}
                         patientDataModal={this.state.patientDataModal}
-                        closeConfirmModal={this.handleCancel}
+                        closeConfirmModal={this.closeConfirmModal}
                     />
                     :
                     ''

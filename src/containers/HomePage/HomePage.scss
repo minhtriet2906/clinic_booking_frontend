@@ -29,6 +29,8 @@
   }
 
   &.section-about {
+    display: flex;
+    background-position: center center;
     border: 1px solid red;
   }
 

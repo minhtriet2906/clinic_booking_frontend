@@ -178,7 +178,6 @@ class ScheduleManage extends Component {
 
     render() {
         let { timeSlotOptions } = this.state;
-        let minDate = new Date(new Date().setDate(new Date().getDate() - 1));
         let doctorName = this.props.user.role === 'R2' ? this.props.user.lastName + ' ' + this.props.user.firstName : null;
         return (
             <div className="schedule-manage-container">
@@ -210,7 +209,6 @@ class ScheduleManage extends Component {
                                 className="form-control"
                                 onChange={this.handleSelectDatePicker}
                                 value={this.state.selectedDate}
-                                minDate={minDate}
                             />
                         </div>
                         <div className="col-12 schedule-time-container">
