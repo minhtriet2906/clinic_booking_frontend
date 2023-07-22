@@ -98,7 +98,7 @@ class ScheduleManageTable extends Component {
                                 item.doctorData.firstName + ' ' + item.doctorData.lastName;
                             return (
                                 <tr key={index}>
-                                    <td>{index}</td>
+                                    <td>{index + 1}</td>
                                     <td>{doctorName}</td>
                                     <td>{scheduleDisplay}</td>
                                     <td>

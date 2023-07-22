@@ -125,7 +125,7 @@ class BookingModal extends Component {
         for (let i = 0; i < checkInfo.length; i++) {
             if (!this.state[checkInfo[i]]) {
                 isValid = false;
-                alert('Missing input ' + checkInfo[i]);
+                toast.error("Missing input");
                 break;
             }
         }
