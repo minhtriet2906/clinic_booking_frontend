@@ -130,7 +130,7 @@ class PatientManageTable extends Component {
                                     <td>{item.patientData.phonenumber}</td>
 
                                     <td>
-                                        <button className='btn-confirm' onClick={() => this.handleConfirm(item)}>Confirm</button>
+                                        <button className='btn-confirm' onClick={() => this.handleConfirm(item)}>Completed</button>
                                         <button className='btn-cancel' onClick={() => this.handleCancel(item)}>Cancel</button>
 
                                     </td>
