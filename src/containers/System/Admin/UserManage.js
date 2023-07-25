@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from "../../../utils"
 import * as actions from "../../../store/actions"
 import Lightbox from 'react-image-lightbox';
+import { toast } from 'react-toastify';
 import './UserManage.scss'
 import UserManageTable from './UserManageTable';
 
@@ -124,7 +125,7 @@ class UserManage extends Component {
         for (let i = 0; i < checkInfo.length; i++) {
             if (!this.state[checkInfo[i]]) {
                 isValid = false;
-                alert('Missing input ' + checkInfo[i]);
+                toast.error('Missing input ' + checkInfo[i]);
                 break;
             }
         }
