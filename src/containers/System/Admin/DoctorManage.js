@@ -9,6 +9,7 @@ import 'react-markdown-editor-lite/lib/index.css';
 import Select from 'react-select';
 import { LANGUAGES } from '../../../utils';
 import { getDoctorDetailsService } from '../../../services/userService';
+import { toast } from 'react-toastify';
 
 
 
@@ -142,6 +143,10 @@ class DoctorManage extends Component {
 
     handleSaveDoctorInfo = () => {
         console.log('save', this.state);
+        if (this.state.selectedDoctor === null) {
+            toast.error("Please select a doctor!");
+        }
+
         let doctorInfo = {
             contentHTML: this.state.contentHTML,
             contentMarkdown: this.state.contentMarkdown,
