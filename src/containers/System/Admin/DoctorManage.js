@@ -145,26 +145,28 @@ class DoctorManage extends Component {
         console.log('save', this.state);
         if (this.state.selectedDoctor === null) {
             toast.error("Please select a doctor!");
+            return;
         }
+        else {
+            let doctorInfo = {
+                contentHTML: this.state.contentHTML,
+                contentMarkdown: this.state.contentMarkdown,
+                description: this.state.description,
+                note: this.state.note,
 
-        let doctorInfo = {
-            contentHTML: this.state.contentHTML,
-            contentMarkdown: this.state.contentMarkdown,
-            description: this.state.description,
-            note: this.state.note,
+                doctorId: this.state.selectedDoctor.value,
+                clinicId: this.state.clinicValue,
+                specialtyId: this.state.specialtyValue,
 
-            doctorId: this.state.selectedDoctor.value,
-            clinicId: this.state.clinicValue,
-            specialtyId: this.state.specialtyValue,
+                selectedPrice: this.state.selectedPrice ? this.state.selectedPrice.value : null,
+                selectedPayment: this.state.selectedPayment ? this.state.selectedPayment.value : null,
+                selectedProvince: this.state.selectedProvince ? this.state.selectedProvince.value : null,
 
-            selectedPrice: this.state.selectedPrice ? this.state.selectedPrice.value : null,
-            selectedPayment: this.state.selectedPayment ? this.state.selectedPayment.value : null,
-            selectedProvince: this.state.selectedProvince ? this.state.selectedProvince.value : null,
+            }
 
+            console.log('save', doctorInfo);
+            this.props.saveDoctorInfo(doctorInfo);
         }
-
-        console.log('save', doctorInfo);
-        this.props.saveDoctorInfo(doctorInfo);
     }
 
     handleSelectDoctor = async (selectedDoctor) => {
