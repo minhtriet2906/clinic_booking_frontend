@@ -150,7 +150,7 @@ class ScheduleManage extends Component {
 
 
         // Format the date in "yyyy-mm-dd HH:mm:ss" format
-        const formattedDate = `${year}-${month}-${day} ${0}:${0}:${0}`;
+        const formattedDate = `${year}-${month}-${day}`;
 
         if (timeSlotOptions && timeSlotOptions.length > 0) {
             let selectedTimeSlots = timeSlotOptions.filter(item => item.isSelected === true);
