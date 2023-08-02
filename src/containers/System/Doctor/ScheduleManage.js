@@ -140,7 +140,19 @@ class ScheduleManage extends Component {
 
         // let formattedDate = moment(selectedDate).format(dateFormat.SEND_TO_SERVER);
         // let formattedDate = moment(selectedDate).unix();
-        let formattedDate = new Date(selectedDate).getTime();
+        console.log(selectedDate);
+        const date = new Date(selectedDate);
+
+        // Get the year, month, day, hours, minutes, and seconds from the Date object
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+
+        // Format the date in "yyyy-mm-dd HH:mm:ss" format
+        const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
         if (timeSlotOptions && timeSlotOptions.length > 0) {
             let selectedTimeSlots = timeSlotOptions.filter(item => item.isSelected === true);
@@ -161,7 +173,7 @@ class ScheduleManage extends Component {
 
         let res = await saveBulkScheduleService({
             schedulesArr: schedules,
-            doctorId: selectedDoctor,
+            doctorId: selectedDoctor.value,
             formattedDate: formattedDate
         });
 
