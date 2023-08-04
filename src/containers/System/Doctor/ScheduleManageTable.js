@@ -79,6 +79,7 @@ class ScheduleManageTable extends Component {
     render() {
         let doctorSchedules = this.state.schedules;
         let { language } = this.props;
+        console.log(doctorSchedules);
         return (
             <React.Fragment>
                 <table id='schedule-manage-table'>
@@ -87,6 +88,8 @@ class ScheduleManageTable extends Component {
                             <th>ID</th>
                             <th>Doctor</th>
                             <th>Time</th>
+                            <th>Current number of patients</th>
+                            <th>Maximum number of patients allowed</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -101,6 +104,8 @@ class ScheduleManageTable extends Component {
                                     <td>{index + 1}</td>
                                     <td>{doctorName}</td>
                                     <td>{scheduleDisplay}</td>
+                                    <td>{item.currentNumber}</td>
+                                    <td>{item.maxNumber}</td>
                                     <td>
                                         <button className='btn-delete' onClick={() => this.handleDeleteSchedule(item)}>Delete</button>
                                     </td>

@@ -129,7 +129,6 @@ class ScheduleManage extends Component {
 
         if (maxNumber < 1 || maxNumber > 5) {
             toast.error('Max Number must be between 1 and 5');
-            maxNumber = 3;
         }
 
         this.setState({
