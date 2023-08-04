@@ -22,6 +22,7 @@ class ScheduleManage extends Component {
             timeSlotOptions: [],
             selectedDoctor: props.user.role === 'R2' ? props.user.id : null,
             selectedDate: null,
+            maxNumber: 3
         }
     }
 
@@ -123,8 +124,20 @@ class ScheduleManage extends Component {
         }
     }
 
+    handleSelectMaxNumber = async (event) => {
+        let maxNumber = event.target.value;
+
+        if (maxNumber < 1 || maxNumber > 5) {
+            toast.error('Max Number must be between 1 and 5');
+        }
+
+        this.setState({
+            maxNumber: maxNumber
+        })
+    }
+
     handleSaveSchedule = async () => {
-        let { timeSlotOptions, selectedDoctor, selectedDate } = this.state;
+        let { timeSlotOptions, selectedDoctor, selectedDate, maxNumber } = this.state;
         console.log(selectedDoctor);
         let schedules = []
 
@@ -161,7 +174,8 @@ class ScheduleManage extends Component {
         let res = await saveBulkScheduleService({
             schedulesArr: schedules,
             doctorId: selectedDoctor.value,
-            formattedDate: formattedDate
+            formattedDate: formattedDate,
+            maxNumber: maxNumber,
         });
 
         if (res && res.errorCode === 0) {
@@ -209,6 +223,12 @@ class ScheduleManage extends Component {
                                 onChange={this.handleSelectDatePicker}
                                 value={this.state.selectedDate}
                             />
+                        </div>
+                        <div className="col-4 max-number">
+                            <label><label><FormattedMessage id='manage-schedule.choose-max-number'></FormattedMessage></label>
+                            </label>
+                            <input className='form-control' type='number' name='maxNumber' min='1' max='5'
+                                value={this.state.maxNumber} onChange={(event) => { this.handleSelectMaxNumber(event) }} />
                         </div>
                         <div className="col-12 schedule-time-container">
                             {timeSlotOptions && timeSlotOptions.length > 0 &&

@@ -91,6 +91,7 @@
     "title": "Quản lý lịch khám bệnh của bác sĩ",
     "choose-doctor": "Chọn bác sĩ",
     "choose-date": "Chọn ngày",
+    "choose-max-number": "Số lượng tối đa bệnh nhân cho phép (1-5) trong một ca khám: ",
     "save": "Lưu thông tin"
   },
 
