@@ -28,9 +28,9 @@ class SearchDropdown extends Component {
 
     async componentDidMount() {
 
-        let specialtiesList = this.createSpecialtiesListOptions(this.props.specialties);
-        let doctorsList = this.createDoctorsListOptions(this.props.doctors);
-        let clinicsList = this.createClinicsListOptions(this.props.clinics);
+        let specialtiesList = await this.createSpecialtiesListOptions(this.props.specialties);
+        let doctorsList = await this.createDoctorsListOptions(this.props.doctors);
+        let clinicsList = await this.createClinicsListOptions(this.props.clinics);
 
 
 
@@ -41,9 +41,9 @@ class SearchDropdown extends Component {
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
-        let specialtiesList = this.createSpecialtiesListOptions(this.props.specialties);
-        let doctorsList = this.createDoctorsListOptions(this.props.doctors);
-        let clinicsList = this.createClinicsListOptions(this.props.clinics);
+        let specialtiesList = await this.createSpecialtiesListOptions(this.props.specialties);
+        let doctorsList = await this.createDoctorsListOptions(this.props.doctors);
+        let clinicsList = await this.createClinicsListOptions(this.props.clinics);
 
         if (prevProps.searchString !== this.props.searchString) {
             this.setState({
@@ -118,7 +118,7 @@ class SearchDropdown extends Component {
     }
 
     render() {
-        console.log(this.state.doctorOptions);
+        console.log(this.state.searchOptions);
         return (
             <CustomScrollbars style={{ height: '100vh', width: '100%' }}>
 
