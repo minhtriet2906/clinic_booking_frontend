@@ -40,7 +40,6 @@ class MedicalFacility extends Component {
 
 
     render() {
-        console.log(this.state.clinics);
         let clinicsList = this.state.clinics;
         return (
             <div className="section-share section-medical-facility">
