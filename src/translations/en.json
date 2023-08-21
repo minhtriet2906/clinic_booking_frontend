@@ -47,7 +47,8 @@
     "login": "Login",
     "username": "Username",
     "password": "Password",
-    "userpass-wrong": "Invalid username or password!"
+    "userpass-wrong": "Invalid username or password!",
+    "access-denied": "Access Denied"
   },
   "menu": {
     "admin": {

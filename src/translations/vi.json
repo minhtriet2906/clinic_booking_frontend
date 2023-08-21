@@ -47,7 +47,8 @@
     "login": "Đăng nhập",
     "username": "Tên đăng nhập",
     "password": "Mật khẩu",
-    "userpass-wrong": "Sai tên đăng nhập hoặc mật khẩu!"
+    "userpass-wrong": "Sai tên đăng nhập hoặc mật khẩu!",
+    "access-denied": "Không được truy cập"
   },
   "menu": {
     "admin": {
