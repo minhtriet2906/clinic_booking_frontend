@@ -47,7 +47,8 @@
     "login": "Login",
     "username": "Username",
     "password": "Password",
-    "userpass-wrong": "Invalid username or password!"
+    "userpass-wrong": "Invalid username or password!",
+    "access-denied": "Access Denied"
   },
   "menu": {
     "admin": {
@@ -92,6 +93,7 @@
     "title": "Doctor's Schedule Management",
     "choose-doctor": "Choose doctor",
     "choose-date": "Choose date",
+    "choose-max-number": "Select the maximum number of patients (1-5) in one time slot: ",
     "save": "Save"
   },
 

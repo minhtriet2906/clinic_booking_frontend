@@ -68,7 +68,7 @@ class ClinicDetails extends Component {
                     </div >
 
                     <div className='doctor-list-title'>
-                        Danh sach bac si
+                        <FormattedMessage id="homeheader.doctor"></FormattedMessage>
                     </div>
                     {clinicDoctors && clinicDoctors.length > 0 &&
                         clinicDoctors.map((item, index) => {

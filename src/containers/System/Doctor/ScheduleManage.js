@@ -22,6 +22,7 @@ class ScheduleManage extends Component {
             timeSlotOptions: [],
             selectedDoctor: props.user.role === 'R2' ? props.user.id : null,
             selectedDate: null,
+            maxNumber: 3
         }
     }
 
@@ -123,8 +124,20 @@ class ScheduleManage extends Component {
         }
     }
 
+    handleSelectMaxNumber = async (event) => {
+        let maxNumber = event.target.value;
+
+        if (maxNumber < 1 || maxNumber > 5) {
+            toast.error('Max Number must be between 1 and 5');
+        }
+
+        this.setState({
+            maxNumber: maxNumber
+        })
+    }
+
     handleSaveSchedule = async () => {
-        let { timeSlotOptions, selectedDoctor, selectedDate } = this.state;
+        let { timeSlotOptions, selectedDoctor, selectedDate, maxNumber } = this.state;
         console.log(selectedDoctor);
         let schedules = []
 
@@ -138,9 +151,8 @@ class ScheduleManage extends Component {
             return;
         }
 
-        // let formattedDate = moment(selectedDate).format(dateFormat.SEND_TO_SERVER);
-        // let formattedDate = moment(selectedDate).unix();
         let formattedDate = new Date(selectedDate).getTime();
+        console.log(formattedDate);
 
         if (timeSlotOptions && timeSlotOptions.length > 0) {
             let selectedTimeSlots = timeSlotOptions.filter(item => item.isSelected === true);
@@ -161,8 +173,9 @@ class ScheduleManage extends Component {
 
         let res = await saveBulkScheduleService({
             schedulesArr: schedules,
-            doctorId: selectedDoctor,
-            formattedDate: formattedDate
+            doctorId: selectedDoctor.value,
+            formattedDate: formattedDate,
+            maxNumber: maxNumber,
         });
 
         if (res && res.errorCode === 0) {
@@ -178,7 +191,6 @@ class ScheduleManage extends Component {
 
     render() {
         let { timeSlotOptions } = this.state;
-        let minDate = new Date(new Date().setDate(new Date().getDate() - 1));
         let doctorName = this.props.user.role === 'R2' ? this.props.user.lastName + ' ' + this.props.user.firstName : null;
         return (
             <div className="schedule-manage-container">
@@ -210,8 +222,13 @@ class ScheduleManage extends Component {
                                 className="form-control"
                                 onChange={this.handleSelectDatePicker}
                                 value={this.state.selectedDate}
-                                minDate={minDate}
                             />
+                        </div>
+                        <div className="col-4 max-number">
+                            <label><label><FormattedMessage id='manage-schedule.choose-max-number'></FormattedMessage></label>
+                            </label>
+                            <input className='form-control' type='number' name='maxNumber' min='1' max='5'
+                                value={this.state.maxNumber} onChange={(event) => { this.handleSelectMaxNumber(event) }} />
                         </div>
                         <div className="col-12 schedule-time-container">
                             {timeSlotOptions && timeSlotOptions.length > 0 &&

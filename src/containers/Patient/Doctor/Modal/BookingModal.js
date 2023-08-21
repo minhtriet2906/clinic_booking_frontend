@@ -125,7 +125,7 @@ class BookingModal extends Component {
         for (let i = 0; i < checkInfo.length; i++) {
             if (!this.state[checkInfo[i]]) {
                 isValid = false;
-                alert('Missing input ' + checkInfo[i]);
+                toast.error("Missing input");
                 break;
             }
         }
@@ -189,8 +189,10 @@ class BookingModal extends Component {
                             <span className='left'>
                                 <FormattedMessage id="patient.booking-modal.title"></FormattedMessage>
                             </span>
-                            <br></br>
-                            <FormattedMessage id="patient.booking-modal.note"></FormattedMessage>
+                            <span className='note'>
+                                <br></br>
+                                <FormattedMessage id="patient.booking-modal.note"></FormattedMessage>
+                            </span>
                             <span className='right'
                                 onClick={closeBookingModal}>
                                 <i className='fas fa-times'></i>

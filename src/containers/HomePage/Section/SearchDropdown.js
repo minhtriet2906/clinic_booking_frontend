@@ -22,37 +22,23 @@ class SearchDropdown extends Component {
         this.setState({
             isSearching: true
         })
-
-
     }
 
     async componentDidMount() {
-
-        let specialtiesList = this.createSpecialtiesListOptions(this.props.specialties);
-        let doctorsList = this.createDoctorsListOptions(this.props.doctors);
-        let clinicsList = this.createClinicsListOptions(this.props.clinics);
-
-
-
-        this.setState({
-            searchString: this.props.searchString,
-            searchOptions: specialtiesList.concat(doctorsList.concat(clinicsList))
-        });
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
-        let specialtiesList = this.createSpecialtiesListOptions(this.props.specialties);
-        let doctorsList = this.createDoctorsListOptions(this.props.doctors);
-        let clinicsList = this.createClinicsListOptions(this.props.clinics);
+        let specialtiesList = await this.createSpecialtiesListOptions(this.props.specialties);
+        let doctorsList = await this.createDoctorsListOptions(this.props.doctors);
+        let clinicsList = await this.createClinicsListOptions(this.props.clinics);
 
         if (prevProps.searchString !== this.props.searchString) {
-            this.setState({
+            await this.setState({
                 searchString: this.props.searchString,
-                doctorOptions: doctorsList,
-                clinicOptions: clinicsList,
-                specialtyOptions: specialtiesList
-            })
+                searchOptions: specialtiesList.concat(doctorsList.concat(clinicsList))
+            });
         }
+
     }
 
     handleSelectOption = (option) => {
@@ -118,7 +104,6 @@ class SearchDropdown extends Component {
     }
 
     render() {
-        console.log(this.state.doctorOptions);
         return (
             <CustomScrollbars style={{ height: '100vh', width: '100%' }}>
 

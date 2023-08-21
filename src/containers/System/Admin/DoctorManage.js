@@ -9,6 +9,7 @@ import 'react-markdown-editor-lite/lib/index.css';
 import Select from 'react-select';
 import { LANGUAGES } from '../../../utils';
 import { getDoctorDetailsService } from '../../../services/userService';
+import { toast } from 'react-toastify';
 
 
 
@@ -142,24 +143,30 @@ class DoctorManage extends Component {
 
     handleSaveDoctorInfo = () => {
         console.log('save', this.state);
-        let doctorInfo = {
-            contentHTML: this.state.contentHTML,
-            contentMarkdown: this.state.contentMarkdown,
-            description: this.state.description,
-            note: this.state.note,
-
-            doctorId: this.state.selectedDoctor.value,
-            clinicId: this.state.clinicValue,
-            specialtyId: this.state.specialtyValue,
-
-            selectedPrice: this.state.selectedPrice ? this.state.selectedPrice.value : null,
-            selectedPayment: this.state.selectedPayment ? this.state.selectedPayment.value : null,
-            selectedProvince: this.state.selectedProvince ? this.state.selectedProvince.value : null,
-
+        if (this.state.selectedDoctor === null) {
+            toast.error("Please select a doctor!");
+            return;
         }
+        else {
+            let doctorInfo = {
+                contentHTML: this.state.contentHTML,
+                contentMarkdown: this.state.contentMarkdown,
+                description: this.state.description,
+                note: this.state.note,
 
-        console.log('save', doctorInfo);
-        this.props.saveDoctorInfo(doctorInfo);
+                doctorId: this.state.selectedDoctor.value,
+                clinicId: this.state.clinicValue,
+                specialtyId: this.state.specialtyValue,
+
+                selectedPrice: this.state.selectedPrice ? this.state.selectedPrice.value : null,
+                selectedPayment: this.state.selectedPayment ? this.state.selectedPayment.value : null,
+                selectedProvince: this.state.selectedProvince ? this.state.selectedProvince.value : null,
+
+            }
+
+            console.log('save', doctorInfo);
+            this.props.saveDoctorInfo(doctorInfo);
+        }
     }
 
     handleSelectDoctor = async (selectedDoctor) => {

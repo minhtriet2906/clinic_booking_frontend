@@ -54,35 +54,39 @@ class PatientManage extends Component {
 
 
     render() {
-        let minDate = new Date(new Date().setDate(new Date().getDate() - 1));
         console.log(this.props);
         return (
-            <div className='patient-manage-container'>
-                <div className='patient-manage-title'>
-                    Patient manage
-                </div>
-                <div className='patient-manage-body row'>
-
-                    <div className="col-4 date-picker">
-                        <label><label><FormattedMessage id='manage-schedule.choose-date'></FormattedMessage></label>
-                        </label>
-                        <DatePicker
-                            className="form-control"
-                            onChange={this.handleSelectDatePicker}
-                            value={this.state.selectedDate}
-                            minDate={minDate}
-                        />
-                    </div>
-
-                    <div className='col-12 patient-manage-table'>
-                        <div className='col-12 mt-3 mb-5'>
-                            <PatientManageTable
-                                bookings={this.state.bookingsList}
-                            />
+            <>
+                {this.props.user.role === "R2" ?
+                    <div className='patient-manage-container'>
+                        <div className='patient-manage-title'>
+                            Patient Booking Appointments management
                         </div>
-                    </div>
-                </div>
-            </div >
+                        <div className='patient-manage-body row'>
+
+                            <div className="col-4 date-picker">
+                                <label><label><FormattedMessage id='manage-schedule.choose-date'></FormattedMessage></label>
+                                </label>
+                                <DatePicker
+                                    className="form-control"
+                                    onChange={this.handleSelectDatePicker}
+                                    value={this.state.selectedDate}
+                                />
+                            </div>
+
+                            <div className='col-12 patient-manage-table'>
+                                <div className='col-12 mt-3 mb-5'>
+                                    <PatientManageTable
+                                        bookings={this.state.bookingsList}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div >
+                    :
+                    <FormattedMessage id="login.access-denied"></FormattedMessage>
+                }
+            </>
         );
     }
 }

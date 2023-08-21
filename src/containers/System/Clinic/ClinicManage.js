@@ -191,86 +191,95 @@ class ClinicManage extends Component {
     render() {
         console.log(this.state);
         return (
-            <div className='clinic-manage-container'>
-                <div className='clinic-manage-title'>
-                    Clinics Management
-                </div>
-                <button
-                    className='change-save-mode'
-                    onClick={() => this.handleChangeSaveMode()}>
-                    {this.state.action === CRUD_ACTIONS.EDIT ?
-                        'Create new clinic' : 'Edit clinic'}
-                </button>
-                <div className='clinic row'>
-                    {this.state.action === CRUD_ACTIONS.EDIT ?
-                        <div className='col-4 form-group'>
-                            <label>Choose Clinic</label>
-                            <Select
-                                onChange={this.handleSelectClinic}
-                                options={this.state.clinicOptions}
-                                value={this.state.selectedClinic}
-                                placeholder="Choose clinic"
-                            />
+            <>
+                {
+                    this.props.user.role === "R1" ?
+                        <div className='clinic-manage-container'>
+                            <div className='clinic-manage-title'>
+                                Clinics Management
+                            </div>
+                            <button
+                                className='change-save-mode'
+                                onClick={() => this.handleChangeSaveMode()}>
+                                {this.state.action === CRUD_ACTIONS.EDIT ?
+                                    'Create new clinic' : 'Edit clinic'}
+                            </button>
+                            <div className='clinic row'>
+                                {this.state.action === CRUD_ACTIONS.EDIT ?
+                                    <div className='col-4 form-group'>
+                                        <label>Choose Clinic</label>
+                                        <Select
+                                            onChange={this.handleSelectClinic}
+                                            options={this.state.clinicOptions}
+                                            value={this.state.selectedClinic}
+                                            placeholder="Choose clinic"
+                                        />
+                                    </div>
+                                    :
+                                    <div className='col-4 form-group'>
+                                        <label>Clinic Name: </label>
+                                        <input className='form-control' rows='4'
+                                            onChange={(event) => this.handleOnChangeInput(event, 'name')}
+                                            value={this.state.name}>
+                                        </input>
+                                    </div>
+                                }
+                                <div className='col-6 form-group'>
+                                    <label>Address</label>
+                                    <textarea className='form-control' rows='4'
+                                        onChange={(event) => this.handleOnChangeInput(event, 'address')}
+                                        value={this.state.address}>
+                                    </textarea>
+                                </div>
+                                <div className='col-4 form-group'>
+                                    <label>Description</label>
+                                    <textarea className='form-control' rows='4'
+                                        onChange={(event) => this.handleOnChangeInput(event, 'description')}
+                                        value={this.state.description}>
+                                    </textarea>
+                                </div>
+                                <div className='col-4 form-group'>
+                                    <label>Note</label>
+                                    <textarea className='form-control' rows='4'
+                                        onChange={(event) => this.handleOnChangeInput(event, 'note')}
+                                        value={this.state.note}>
+                                    </textarea>
+                                </div>
+                                <div className='col-4'>
+                                    <label>Image</label>
+                                    <div className='preview-img-container'>
+                                        <input id='preview-img' type='file' hidden
+                                            onChange={(event) => this.handleOnChangeImage(event)} />
+
+                                        <label className='label-upload' htmlFor='preview-img'>Tai anh <i className='fas fa-upload'></i></label>
+
+                                        <div className='preview-image'
+                                            style={{ backgroundImage: `url(${this.state.previewImgURL})` }}
+                                            onClick={() => this.openPreviewImage()}>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div >
+                            <div className='clinic-manage-editor'>
+                                <FormattedMessage id="admin.manage-doctor-infor.detail-infor"></FormattedMessage>
+                                <MdEditor
+                                    style={{ height: '500px' }}
+                                    renderHTML={text => mdParser.render(text)}
+                                    onChange={this.handleEditorChange}
+                                    value={this.state.contentMarkdown} />
+                            </div>
+                            <button
+                                className='save-clinic-content'
+                                onClick={() => this.handleSaveClinicInfo()}>
+                                Save info
+                            </button>
                         </div>
                         :
-                        <div className='col-4 form-group'>
-                            <label>Clinic Name: </label>
-                            <input className='form-control' rows='4'
-                                onChange={(event) => this.handleOnChangeInput(event, 'name')}
-                                value={this.state.name}>
-                            </input>
+                        <div className='access-denied'>
+                            <FormattedMessage id="login.access-denied"></FormattedMessage>
                         </div>
-                    }
-                    <div className='col-6 form-group'>
-                        <label>Address</label>
-                        <textarea className='form-control' rows='4'
-                            onChange={(event) => this.handleOnChangeInput(event, 'address')}
-                            value={this.state.address}>
-                        </textarea>
-                    </div>
-                    <div className='col-4 form-group'>
-                        <label>Description</label>
-                        <textarea className='form-control' rows='4'
-                            onChange={(event) => this.handleOnChangeInput(event, 'description')}
-                            value={this.state.description}>
-                        </textarea>
-                    </div>
-                    <div className='col-4 form-group'>
-                        <label>Note</label>
-                        <textarea className='form-control' rows='4'
-                            onChange={(event) => this.handleOnChangeInput(event, 'note')}
-                            value={this.state.note}>
-                        </textarea>
-                    </div>
-                    <div className='col-4'>
-                        <label>Image</label>
-                        <div className='preview-img-container'>
-                            <input id='preview-img' type='file' hidden
-                                onChange={(event) => this.handleOnChangeImage(event)} />
-
-                            <label className='label-upload' htmlFor='preview-img'>Tai anh <i className='fas fa-upload'></i></label>
-
-                            <div className='preview-image'
-                                style={{ backgroundImage: `url(${this.state.previewImgURL})` }}
-                                onClick={() => this.openPreviewImage()}>
-                            </div>
-                        </div>
-                    </div>
-                </div >
-                <div className='clinic-manage-editor'>
-                    <FormattedMessage id="admin.manage-doctor-infor.detail-infor"></FormattedMessage>
-                    <MdEditor
-                        style={{ height: '500px' }}
-                        renderHTML={text => mdParser.render(text)}
-                        onChange={this.handleEditorChange}
-                        value={this.state.contentMarkdown} />
-                </div>
-                <button
-                    className='save-clinic-content'
-                    onClick={() => this.handleSaveClinicInfo()}>
-                    Save info
-                </button>
-            </div>
+                }
+            </>
         );
     }
 }
@@ -280,7 +289,7 @@ const mapStateToProps = state => {
         isLoggedIn: state.user.isLoggedIn,
         language: state.app.language,
         clinics: state.admin.clinics,
-
+        user: state.user.userInfo
     };
 };
 

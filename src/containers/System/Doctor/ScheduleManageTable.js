@@ -18,11 +18,16 @@ class ScheduleManageTable extends Component {
 
     async componentDidMount() {
         if (this.props.doctor && this.props.formattedDate) {
-            let res = await getDoctorSchedulesByDateService(this.props.doctor.value, this.props.formattedDate);
-            if (res && res.errorCode === 0) {
-                this.setState({
-                    schedules: res.data ? res.data : []
-                })
+            if (this.props.doctor) {
+                let res = await getDoctorSchedulesByDateService(this.props.doctor.value, this.props.formattedDate);
+                if (res && res.errorCode === 0) {
+                    this.setState({
+                        schedules: res.data ? res.data : []
+                    })
+                }
+            }
+            else {
+                toast.error("Please select doctor");
             }
         }
     }
@@ -30,13 +35,16 @@ class ScheduleManageTable extends Component {
     async componentDidUpdate(prevProps, prevState, snapshot) {
         if ((this.props.doctor !== prevProps.doctor) ||
             (this.props.formattedDate !== prevProps.formattedDate)) {
-            if (this.props.doctor.value) {
+            if (this.props.doctor) {
                 let res = await getDoctorSchedulesByDateService(this.props.doctor.value, this.props.formattedDate);
                 if (res && res.errorCode === 0) {
                     this.setState({
                         schedules: res.data ? res.data : []
                     })
                 }
+            }
+            else {
+                toast.error("Please select doctor");
             }
         }
     }
@@ -51,13 +59,16 @@ class ScheduleManageTable extends Component {
         console.log(res);
         if (res && res.errorCode === 0) {
             toast.success(res.message);
-            if (this.props.doctor.value) {
+            if (this.props.doctor) {
                 let res = await getDoctorSchedulesByDateService(this.props.doctor.value, this.props.formattedDate);
                 if (res && res.errorCode === 0) {
                     this.setState({
                         schedules: res.data ? res.data : []
                     })
                 }
+            }
+            else {
+                toast.error("Please select doctor");
             }
         }
         else {
@@ -68,6 +79,7 @@ class ScheduleManageTable extends Component {
     render() {
         let doctorSchedules = this.state.schedules;
         let { language } = this.props;
+        console.log(doctorSchedules);
         return (
             <React.Fragment>
                 <table id='schedule-manage-table'>
@@ -76,6 +88,8 @@ class ScheduleManageTable extends Component {
                             <th>ID</th>
                             <th>Doctor</th>
                             <th>Time</th>
+                            <th>Current number of patients</th>
+                            <th>Maximum number of patients allowed</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -87,9 +101,11 @@ class ScheduleManageTable extends Component {
                                 item.doctorData.firstName + ' ' + item.doctorData.lastName;
                             return (
                                 <tr key={index}>
-                                    <td>{index}</td>
+                                    <td>{index + 1}</td>
                                     <td>{doctorName}</td>
                                     <td>{scheduleDisplay}</td>
+                                    <td>{item.currentNumber}</td>
+                                    <td>{item.maxNumber}</td>
                                     <td>
                                         <button className='btn-delete' onClick={() => this.handleDeleteSchedule(item)}>Delete</button>
                                     </td>

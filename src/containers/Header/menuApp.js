@@ -33,15 +33,6 @@ export const adminMenu = [
             }
         ]
     },
-
-    {//handbook manage
-        name: 'menu.admin.handbook',
-        menus: [
-            {
-                name: 'menu.admin.manage-handbook', link: '/system/handbook-manage'
-            }
-        ]
-    },
 ];
 
 export const doctorMenu = [

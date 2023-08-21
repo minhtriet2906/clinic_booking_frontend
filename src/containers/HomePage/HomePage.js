@@ -5,7 +5,6 @@ import HomeHeader from './HomeHeader';
 import Specialty from './Section/Specialty';
 import MedicalFacility from './Section/MedicalFacility';
 import Doctor from './Section/Doctor';
-import HandBook from './Section/HandBook';
 import About from './Section/About';
 import HomeFooter from './HomeFooter';
 import './HomePage.scss'
@@ -26,7 +25,6 @@ class HomePage extends Component {
                 <Specialty settings={settings}></Specialty>
                 <MedicalFacility settings={settings}></MedicalFacility>
                 <Doctor settings={settings}></Doctor>
-                <HandBook settings={settings}></HandBook>
                 <About></About>
                 <HomeFooter></HomeFooter>
             </div>
